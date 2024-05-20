@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fasterr", "Fasterr\Fasterr.csproj", "{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE2922B2-7C82-477B-87D9-D8A2E1523DAA}
+	EndGlobalSection
+EndGlobal
