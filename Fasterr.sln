@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fasterr", "Fasterr\Fasterr.csproj", "{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fasterr", "Fasterr\Fasterr.csproj", "{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{1450589A-ACA9-4114-A250-C08DB54DE563}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4A01F688-D18E-4A6F-BF4C-230BDE891392}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{DE85B5AE-669B-4ED6-800E-754CA08C3C9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fasterr.Data", "Fasterr.Data\Fasterr.Data.csproj", "{3DB912F0-0646-4EC4-A4C8-ADA3082ACC4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fasterr.Data.Models", "Fasterr.Data.Models\Fasterr.Data.Models.csproj", "{8EF6F5A9-0CB6-424D-B938-3D42C0CD04B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,22 @@ Global
 		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DB912F0-0646-4EC4-A4C8-ADA3082ACC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB912F0-0646-4EC4-A4C8-ADA3082ACC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB912F0-0646-4EC4-A4C8-ADA3082ACC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB912F0-0646-4EC4-A4C8-ADA3082ACC4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF6F5A9-0CB6-424D-B938-3D42C0CD04B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF6F5A9-0CB6-424D-B938-3D42C0CD04B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF6F5A9-0CB6-424D-B938-3D42C0CD04B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF6F5A9-0CB6-424D-B938-3D42C0CD04B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5E4BF5F-95FC-45A6-8098-884FFE6BCEAC} = {DE85B5AE-669B-4ED6-800E-754CA08C3C9F}
+		{3DB912F0-0646-4EC4-A4C8-ADA3082ACC4B} = {1450589A-ACA9-4114-A250-C08DB54DE563}
+		{8EF6F5A9-0CB6-424D-B938-3D42C0CD04B0} = {1450589A-ACA9-4114-A250-C08DB54DE563}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE2922B2-7C82-477B-87D9-D8A2E1523DAA}
