@@ -1,1 +1,1 @@
-# Fasterr
+# Fasterr - The best shop for football equipment
