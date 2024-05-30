@@ -8,6 +8,6 @@ namespace Fasterr.Data
 {
     public class FasterrDbContext
     {
-
+        // this is DB context for the app
     }
 }
