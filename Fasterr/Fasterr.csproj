@@ -17,4 +17,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Fasterr.Data\Fasterr.Data.csproj" />
+    <ProjectReference Include="..\Fasterr.Web.Infrastructure\Fasterr.Web.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

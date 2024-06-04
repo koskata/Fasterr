@@ -25,5 +25,11 @@ namespace Fasterr.Common
             public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 250;
         }
+
+        public static class Category
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 25;
+        }
     }
 }

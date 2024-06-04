@@ -4,10 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Fasterr.Data.Models;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
 namespace Fasterr.Data
 {
-    public class FasterrDbContext
+    public class FasterrDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
-        // this is DB context for the app
+        public FasterrDbContext(DbContextOptions<FasterrDbContext> options)
+            : base(options)
+        {
+
+        }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductBuyerCart> ProductsBuyersCart { get; set; }
+        public DbSet<ProductBuyerPurchased> ProductsBuyersPurchased { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<ProductBuyerCart>().HasKey(x => new { x.BuyerId, x.ProductId });
+            builder.Entity<ProductBuyerPurchased>().HasKey(x => new { x.BuyerId, x.ProductId });
+
+            base.OnModelCreating(builder);
+        }
     }
 }
