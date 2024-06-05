@@ -8,23 +8,54 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Fasterr.styles.css" asp-append-version="true" />
 </head>
+
+<style>
+    .navigaciq {
+        min-height: 12vh;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+</style>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 navigaciq">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fasterr</a>
+                <a class="navbar-brand ps-3 title" asp-area="" asp-controller="Home" asp-action="Index">Fasterr</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                    <ul class="navbar-nav flex-grow-1 gap-4 ps-5">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-secondary btn-lg">Мъже</button>
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-black" href="#">Shoes</a></li>
+                                <li><a class="dropdown-item text-black" href="#">Kits</a></li>
+                                <li><a class="dropdown-item text-black" href="#">Tracksuits</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-black" href="#">Thermal underwear</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-secondary btn-lg">Жени</button>
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-black" href="#">Shoes</a></li>
+                                <li><a class="dropdown-item text-black" href="#">Kits</a></li>
+                                <li><a class="dropdown-item text-black" href="#">Tracksuits</a></li>
+                                <li><hr class="dropdown-divider text-black"></li>
+                                <li><a class="dropdown-item text-black" href="#">Thermal underwear</a></li>
+                            </ul>
+                        </div>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -39,7 +70,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Fasterr - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - Fasterr
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

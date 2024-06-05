@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.radiusBtns {
+    border-radius: 1.3em;
+}
