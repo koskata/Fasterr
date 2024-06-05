@@ -45,6 +45,10 @@ namespace Fasterr.Data.Models
         public int Rating { get; set; }
 
         [Required]
+        [Comment("Product brand")]
+        public string Brand { get; set; } = string.Empty;
+
+        [Required]
         [Comment("Product category identifier")]
         public int CategoryId { get; set; }
 

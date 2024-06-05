@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Fasterr.Data.Configuration;
 using Fasterr.Data.Models;
 
 using Microsoft.AspNetCore.Identity;
@@ -24,11 +25,15 @@ namespace Fasterr.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductBuyerCart> ProductsBuyersCart { get; set; }
         public DbSet<ProductBuyerPurchased> ProductsBuyersPurchased { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ProductBuyerCart>().HasKey(x => new { x.BuyerId, x.ProductId });
             builder.Entity<ProductBuyerPurchased>().HasKey(x => new { x.BuyerId, x.ProductId });
+
+            builder.ApplyConfiguration(new CategoryEntityConfiguration());
+            builder.ApplyConfiguration(new BrandEntityConfiguration());
 
             base.OnModelCreating(builder);
         }
