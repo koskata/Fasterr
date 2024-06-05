@@ -17,6 +17,37 @@ body {
   margin-bottom: 60px;
 }
 
+footer {
+    /*padding: 1em;*/
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $zindex-fixed;
+}
+
+
 .radiusBtns {
     border-radius: 1.3em;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+
+.carousel {
+    margin-bottom: 2rem;
+}
+
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+.carousel-item {
+    height: 52rem;
+}
+
+.carouselMy {
+    height: 52rem;
 }
