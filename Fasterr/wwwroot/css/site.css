@@ -51,3 +51,60 @@ footer {
 .carouselMy {
     height: 52rem;
 }
+
+/* Layout 
+    ----------------------------------------------------
+*/
+
+.navigaciq {
+    min-height: 10vh;
+    background-color: #E0E0E0;
+    box-shadow: 20px;
+}
+
+header {
+    border-bottom: 3px solid black;
+}
+
+footer {
+    background-color: #E0E0E0;
+}
+
+.title {
+    font-size: 2em;
+}
+
+.namaleniq {
+    background-color: #02680D;
+}
+
+.foil {
+    opacity: 2;
+    width: 100%;
+    height: 100%;
+    clip-path: url(#myClip);
+    background: linear-gradient( 48deg, #e3c1f4, #d9d7ed, #dff7f1, #acf0ff, #e3c1f4, #d9d7ed, #dff7f1, #acf0ff, #e3c1f4 );
+    animation: foil 8s ease infinite;
+    background-size: 200% 200%;
+}
+
+keyframes foil {
+0% {
+    background-position: 84% 0;
+}
+
+50% {
+    background-position: 17% 100%;
+}
+
+100% {
+    background-position: 84% 0;
+}
+
+}
+
+.textDiscount {
+    background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

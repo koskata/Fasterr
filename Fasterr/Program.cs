@@ -1,4 +1,6 @@
 using Fasterr.Data;
+using Fasterr.Services;
+using Fasterr.Services.Interfaces;
 using Fasterr.Web.Infrastructure;
 
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +24,8 @@ namespace Fasterr
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
+
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 

@@ -19,7 +19,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fasterr.Data\Fasterr.Data.csproj" />
+    <ProjectReference Include="..\Fasterr.Services\Fasterr.Services.csproj" />
     <ProjectReference Include="..\Fasterr.Web.Infrastructure\Fasterr.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\Fasterr.Web.ViewModels\Fasterr.Web.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
