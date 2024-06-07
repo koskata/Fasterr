@@ -4,6 +4,7 @@ using Fasterr.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fasterr.Data.Migrations
 {
     [DbContext(typeof(FasterrDbContext))]
-    partial class FasterrDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240607132507_dataAddedIntoProductsTable")]
+    partial class dataAddedIntoProductsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,8 +248,8 @@ namespace Fasterr.Data.Migrations
                             CategoryId = 1,
                             Description = "Стилни футболни обувки за ежедневни тренировки и мачове",
                             Discount = 0,
-                            ImageURL = "https://www.futbolemotion.com/imagesarticulos/199088/grandes/bota-nike-zoom-mercurial-superfly-9-elite-fg-turquesa-0.webp",
-                            Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Elite FG Hyper Turq",
+                            ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/xz34ug0kvi9b-BG/image",
+                            Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Elite FG",
                             Price = 299.99m,
                             Rating = 0
                         },
@@ -258,8 +260,8 @@ namespace Fasterr.Data.Migrations
                             CategoryId = 1,
                             Description = "Стилни футболни обувки за ежедневни тренировки и мачове",
                             Discount = 0,
-                            ImageURL = "https://thirdcoastsoccer.net/cdn/shop/products/image__80827.1657841497.1280.1280.png?v=1681567637",
-                            Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Academy FG",
+                            ImageURL = "https://i1.t4s.cz/products/dj5598-146/nike-zoom-superfly-9-pro-fg-547430-dj5598-148-960.webp",
+                            Name = "Футболни обувки Nike Zoom Superfly 9 Pro FG",
                             Price = 309.99m,
                             Rating = 0
                         },

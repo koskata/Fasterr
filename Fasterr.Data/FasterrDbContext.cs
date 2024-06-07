@@ -34,6 +34,7 @@ namespace Fasterr.Data
 
             builder.ApplyConfiguration(new CategoryEntityConfiguration());
             builder.ApplyConfiguration(new BrandEntityConfiguration());
+            builder.ApplyConfiguration(new ProductEntityConfiguration());
 
             base.OnModelCreating(builder);
         }
