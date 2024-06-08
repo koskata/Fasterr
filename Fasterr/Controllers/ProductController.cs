@@ -19,5 +19,18 @@ namespace Fasterr.Controllers
 
             return View(products);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Info(string id)
+        {
+            if (!await productService.ProductExistsByIdAsync(id))
+            {
+                return BadRequest();
+            }
+
+            var model = await productService.GetProductByIdAsync(id);
+
+            return View(model);
+        }
     }
 }
