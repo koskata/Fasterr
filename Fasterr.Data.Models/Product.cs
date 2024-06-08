@@ -46,7 +46,9 @@ namespace Fasterr.Data.Models
 
         [Required]
         [Comment("Product brand")]
-        public string Brand { get; set; } = string.Empty;
+        public int? BrandId { get; set; }
+
+        public virtual Brand? Brand { get; set; }
 
         [Required]
         [Comment("Product category identifier")]
