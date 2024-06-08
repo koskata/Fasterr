@@ -12,7 +12,7 @@
         }
 </style>
 
-<a asp-area="" asp-controller="Product" asp-action="Info" class="cardLink" style="text-decoration: none; color: inherit;">
+<a asp-area="" asp-controller="Product" asp-action="Info" asp-route-id="@Model.Id" class="cardLink" style="text-decoration: none; color: inherit;">
     <div class="card" style="width: 22rem; border: 1px solid black; height: auto;">
         <img src="@Model.ImageURL" class="card-img-top" alt="..." style="width: auto; height: 18rem;">
         <div class="card-img-overlay">
