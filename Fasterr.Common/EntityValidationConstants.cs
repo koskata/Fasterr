@@ -20,7 +20,7 @@ namespace Fasterr.Common
         public static class Product
         {
             public const int NameMinLength = 2;
-            public const int NameMaxLength = 40;
+            public const int NameMaxLength = 70;
 
             public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 250;
@@ -30,6 +30,12 @@ namespace Fasterr.Common
         {
             public const int NameMinLength = 2;
             public const int NameMaxLength = 25;
+        }
+
+        public static class Brand
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 30;
         }
     }
 }
