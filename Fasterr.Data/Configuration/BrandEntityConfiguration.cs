@@ -46,6 +46,11 @@ namespace Fasterr.Data.Configuration
                 {
                     Id = 5,
                     Name = "Reebok"
+                },
+                new Brand()
+                {
+                    Id = 6,
+                    Name = "Kipsta"
                 }
             };
 
