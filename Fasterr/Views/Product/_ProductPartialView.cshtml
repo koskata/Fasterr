@@ -1,58 +1,75 @@
 ﻿@model ProductAllViewModel
 
-<div class="card" style="width: 25rem;">
-    <img src="@Model.ImageURL" class="card-img-top" alt="..." style="width: auto; height: 18rem;">
-    <hr></hr>
-    <div class="card-body">
-        <h5 class="card-title">@Model.Name</h5>
-        <p class="card-text"><b>@Model.Price лв.</b></p>
+<style>
+
+    .cardLink {
+        opacity: 1;
+        transition: opacity 0.5s;
+    }
+
+        .cardLink:hover {
+            opacity: 0.65;
+        }
+</style>
+
+<a asp-area="" asp-controller="Product" asp-action="Info" class="cardLink" style="text-decoration: none; color: inherit;">
+    <div class="card" style="width: 22rem; border: 1px solid black; height: auto;">
+        <img src="@Model.ImageURL" class="card-img-top" alt="..." style="width: auto; height: 18rem;">
+        <div class="card-img-overlay">
+            <h5 style="color: lawngreen;" class="fw-bolder text-end">Наличен</h5>
+        </div>
+        <hr></hr>
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text"><b>@Model.Price лв.</b></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            @if (Model.Rating == 1)
+            {
+                <div class="d-flex p-1 gap-2">
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                </div>
+            }
+            else if (Model.Rating == 2)
+            {
+                <div class="d-flex p-1 gap-2">
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                </div>
+            }
+            else if (Model.Rating == 3)
+            {
+                <div class="d-flex p-1 gap-2">
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                </div>
+            }
+            else if (Model.Rating == 4)
+            {
+                <div class="d-flex p-1 gap-2">
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                </div>
+            }
+            else if (Model.Rating == 5)
+            {
+                <div class="d-flex p-1 gap-2">
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                </div>
+            }
+            else
+            {
+                <h6 class="p-1 text-center">Продуктът все още не е оценен!</h6>
+            }
+
+
+        </ul>
     </div>
-    <ul class="list-group list-group-flush">
-        @if (Model.Rating == 1)
-        {
-            <div class="d-flex p-1 gap-2">
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-            </div>
-        }
-        else if (Model.Rating == 2)
-        {
-            <div class="d-flex p-1 gap-2">
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-            </div>
-        }
-        else if (Model.Rating == 3)
-        {
-            <div class="d-flex p-1 gap-2">
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-            </div>
-        }
-        else if (Model.Rating == 4)
-        {
-            <div class="d-flex p-1 gap-2">
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-            </div>
-        }
-        else if (Model.Rating == 5)
-        {
-            <div class="d-flex p-1 gap-2">
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-                <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
-            </div>
-        }
-        else
-        {
-            <h6 class="p-1 text-center">Продуктът все още не е оценен!</h6>
-        }
-
-
-    </ul>
-</div>
+</a>
