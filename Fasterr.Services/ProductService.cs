@@ -33,11 +33,33 @@ namespace Fasterr.Services
                     Price = x.Price,
                     Discount = x.Discount,
                     Rating = x.Rating,
-                    Brand = x.Brand,
+                    Brand = x.Brand.Name,
                     Category = x.Category.Name
                 }).ToListAsync();
 
             return products;
         }
+
+        public async Task<ProductDetailsViewModel> GetProductByIdAsync(string id)
+        {
+            var model = await context.Products
+                .Where(x => x.Id.ToString() == id)
+                .Select(x => new ProductDetailsViewModel()
+                {
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImageURL = x.ImageURL,
+                    Price = x.Price,
+                    Discount = x.Discount,
+                    Rating = x.Rating,
+                    Brand = x.Brand.Name,
+                    Category = x.Category.Name
+                }).FirstOrDefaultAsync();
+
+            return model;
+        }
+
+        public async Task<bool> ProductExistsByIdAsync(string id)
+            => await context.Products.AnyAsync(x => x.Id.ToString() == id);
     }
 }
