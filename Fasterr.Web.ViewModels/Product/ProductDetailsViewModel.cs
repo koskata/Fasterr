@@ -6,6 +6,8 @@ namespace Fasterr.Web.ViewModels.Product
 {
     public class ProductDetailsViewModel
     {
+        public string Id { get; set; } = string.Empty;
+
         [Required]
         [StringLength(NameMaxLength)]
         public string Name { get; set; } = string.Empty;
