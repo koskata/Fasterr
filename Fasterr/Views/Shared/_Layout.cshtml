@@ -25,30 +25,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 gap-4 ps-5">
                         <div class="btn-group">
-                            <a type="button" class="btn btn-outline-success btn-lg" asp-area="" asp-controller="Product" asp-action="All">Мъже</a>
-                            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-black" href="#">Shoes</a></li>
-                                <li><a class="dropdown-item text-black" href="#">Kits</a></li>
-                                <li><a class="dropdown-item text-black" href="#">Tracksuits</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-black" href="#">Thermal underwear</a></li>
-                            </ul>
+                            <a type="button" class="btn btn-outline-success btn-lg" asp-area="" asp-controller="Product" asp-action="All" asp-route-type="man">Мъже</a>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-outline-success btn-lg">Жени</button>
-                            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-black" href="#">Shoes</a></li>
-                                <li><a class="dropdown-item text-black" href="#">Kits</a></li>
-                                <li><a class="dropdown-item text-black" href="#">Tracksuits</a></li>
-                                <li><hr class="dropdown-divider text-black"></li>
-                                <li><a class="dropdown-item text-black" href="#">Thermal underwear</a></li>
-                            </ul>
+                            <a type="button" class="btn btn-outline-success btn-lg" asp-area="" asp-controller="Product" asp-action="All" asp-route-type="woman">Жени</a>
                         </div>
                     </ul>
                     <partial name="_LoginPartial" />

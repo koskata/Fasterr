@@ -15,5 +15,9 @@ namespace Fasterr.Services.Interfaces
         Task<ProductDetailsViewModel> GetProductByIdAsync(string id);
 
         Task<bool> ProductExistsByIdAsync(string id);
+
+        Task<List<ProductAllViewModel>> GetAllManProductsAsync();
+
+        Task<List<ProductAllViewModel>> GetAllWomanProductsAsync();
     }
 }

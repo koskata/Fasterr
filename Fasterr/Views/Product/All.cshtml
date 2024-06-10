@@ -1,11 +1,35 @@
 ﻿@model List<ProductAllViewModel>
 
 @{
-    ViewData["Title"] = "Men products";
+    string type = "";
+
+    foreach (var item in Model)
+    {
+        type = item.Type;
+    }
+}
+
+@{
+    @if (type == "Man")
+    {
+        ViewData["Title"] = "Man products";
+    }
+    else
+    {
+        ViewData["Title"] = "Woman products";
+    }
+    
 }
 
 <div class="mt-3 text-center">
-    <h1>Men's products</h1>
+    @if (type == "Man")
+    {
+        <h1>Man's products</h1>
+    }
+    else
+    {
+        <h1>Woman's products</h1>
+    }
     <hr></hr>
 </div>
 

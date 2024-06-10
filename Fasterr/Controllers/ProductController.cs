@@ -1,4 +1,5 @@
 ﻿using Fasterr.Services.Interfaces;
+using Fasterr.Web.ViewModels.Product;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,18 @@ namespace Fasterr.Controllers
             productService = _productService;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string type)
         {
-            var products = await productService.GetAllProductsAsync();
+            List<ProductAllViewModel> products;
+            
+            if (type == "man")
+            {
+                products = await productService.GetAllManProductsAsync();
+            }
+            else
+            {
+                products = await productService.GetAllWomanProductsAsync();
+            }
 
             return View(products);
         }

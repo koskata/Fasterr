@@ -21,6 +21,27 @@ namespace Fasterr.Services
             context = _context;
         }
 
+        public async Task<List<ProductAllViewModel>> GetAllManProductsAsync()
+        {
+            var products = await context.Products
+                .Where(x => x.TypeId == 1)
+                .Select(x => new ProductAllViewModel()
+                {
+                    Id = x.Id.ToString(),
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImageURL = x.ImageURL,
+                    Price = x.Price,
+                    Discount = x.Discount,
+                    Rating = x.Rating,
+                    Brand = x.Brand.Name,
+                    Category = x.Category.Name,
+                    Type = x.Type.Name
+                }).ToListAsync();
+
+            return products;
+        }
+
         public async Task<List<ProductAllViewModel>> GetAllProductsAsync()
         {
             var products = await context.Products
@@ -34,7 +55,29 @@ namespace Fasterr.Services
                     Discount = x.Discount,
                     Rating = x.Rating,
                     Brand = x.Brand.Name,
-                    Category = x.Category.Name
+                    Category = x.Category.Name,
+                    Type = x.Type.Name
+                }).ToListAsync();
+
+            return products;
+        }
+
+        public async Task<List<ProductAllViewModel>> GetAllWomanProductsAsync()
+        {
+            var products = await context.Products
+                .Where(x => x.TypeId == 2)
+                .Select(x => new ProductAllViewModel()
+                {
+                    Id = x.Id.ToString(),
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImageURL = x.ImageURL,
+                    Price = x.Price,
+                    Discount = x.Discount,
+                    Rating = x.Rating,
+                    Brand = x.Brand.Name,
+                    Category = x.Category.Name,
+                    Type = x.Type.Name
                 }).ToListAsync();
 
             return products;
