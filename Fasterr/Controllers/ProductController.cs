@@ -14,20 +14,21 @@ namespace Fasterr.Controllers
             productService = _productService;
         }
 
-        public async Task<IActionResult> All(string type)
+        public async Task<IActionResult> AllForMen([FromQuery] AllProductsQueryModel query /*string type*/)
         {
-            List<ProductAllViewModel> products;
-            
-            if (type == "man")
-            {
-                products = await productService.GetAllManProductsAsync();
-            }
-            else
-            {
-                products = await productService.GetAllWomanProductsAsync();
-            }
 
-            return View(products);
+            var queryResult = await productService.GetAllProductsAsync(
+                query.Category,
+                query.SearchTerm,
+                query.Sorting);
+
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+            query.Products = queryResult.Products;
+
+            var productCategories = await productService.AllCategoriesNamesAsync();
+            query.Categories = productCategories;
+
+            return View(query);
         }
 
         [HttpGet]
@@ -41,6 +42,24 @@ namespace Fasterr.Controllers
             var model = await productService.GetProductByIdAsync(id);
 
             return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> GiveRating(string id, string star)
+        {
+            int rating = int.Parse(star);
+
+            if (!await productService.ProductExistsByIdAsync(id))
+            {
+                return BadRequest();
+            }
+
+            var model = await productService.GetProductByIdAsync(id);
+
+            await productService.Rate(model, id, rating);
+
+            return RedirectToAction(nameof(Info), new { id = id });
         }
     }
 }

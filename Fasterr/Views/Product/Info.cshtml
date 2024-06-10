@@ -1,4 +1,6 @@
 ﻿@model ProductDetailsViewModel
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
 
 @{
     ViewData["Title"] = "Product Details";
@@ -17,6 +19,37 @@
     .loveBtn:hover {
         background-color: #DDD;
     }
+
+    /* ------------------- */
+
+    .firstStar:hover {
+        background-color: yellow;
+    }
+
+    .secondStar:hover {
+        background-color: yellow;
+    }
+
+
+
+    .submitRating {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 0.5em;
+    }
+
+
+    media only screen and (max-width: 600px) {
+    div.stars {
+        width: 150px;
+    }
+}
+
 </style>
 
 <div class="ms-5 me-5 mt-5 text-center">
@@ -37,6 +70,26 @@
             <div class="row ps-4 gap-5">
                 <a class="btn text-white col-10 addToCart" style="background-color: #BF0300; font-size: 1.6em;">Добави в количка</a>
                 <a class="btn col-1 loveBtn"><img src="~/images/heart.png" class="loveImg" style="width: 1.6em;"></a>
+            </div>
+
+            <div class="text-start ps-3">
+                <h5>Дайте своето мнение тук:</h5>
+
+                <div class="stars">
+                    <form asp-controller="Product" asp-action="GiveRating" asp-route-id="@Model.Id" method="post">
+                        <input class="star star-5" id="star-5" type="radio" name="star" asp-for="Rating" value="5" />
+                        <label class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" name="star" asp-for="Rating" value="4" />
+                        <label class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" name="star" asp-for="Rating" value="3" />
+                        <label class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" name="star" asp-for="Rating" value="2" />
+                        <label class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" name="star" asp-for="Rating" value="1" />
+                        <label class="star star-1" for="star-1"></label>
+                        <input class="submitRating" type="submit" value="Изпращане"></input>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
