@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fasterr.Data.Migrations
 {
     [DbContext(typeof(FasterrDbContext))]
-    [Migration("20240607135930_editedNamesAndPicturesOfShoes")]
-    partial class editedNamesAndPicturesOfShoes
+    [Migration("20240610145207_seedData")]
+    partial class seedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -145,6 +145,11 @@ namespace Fasterr.Data.Migrations
                         {
                             Id = 5,
                             Name = "Reebok"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Kipsta"
                         });
                 });
 
@@ -196,9 +201,9 @@ namespace Fasterr.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Product identifier");
 
-                    b.Property<string>("Brand")
+                    b.Property<int?>("BrandId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("int")
                         .HasComment("Product brand");
 
                     b.Property<int>("CategoryId")
@@ -234,9 +239,17 @@ namespace Fasterr.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Product rating");
 
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int")
+                        .HasComment("Product type identifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Products");
 
@@ -244,38 +257,132 @@ namespace Fasterr.Data.Migrations
                         new
                         {
                             Id = new Guid("35c9c992-f210-4939-8a1a-b1d0ddc46daf"),
-                            Brand = "Nike",
+                            BrandId = 1,
                             CategoryId = 1,
                             Description = "Стилни футболни обувки за ежедневни тренировки и мачове",
                             Discount = 0,
                             ImageURL = "https://www.futbolemotion.com/imagesarticulos/199088/grandes/bota-nike-zoom-mercurial-superfly-9-elite-fg-turquesa-0.webp",
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Elite FG Hyper Turq",
                             Price = 299.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
                             Id = new Guid("920c24b3-0d0e-473a-b79b-0c7961654ca0"),
-                            Brand = "Nike",
+                            BrandId = 1,
                             CategoryId = 1,
                             Description = "Стилни футболни обувки за ежедневни тренировки и мачове",
                             Discount = 0,
                             ImageURL = "https://thirdcoastsoccer.net/cdn/shop/products/image__80827.1657841497.1280.1280.png?v=1681567637",
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Academy FG",
                             Price = 309.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
                             Id = new Guid("3a84fcad-faa8-4ba7-bd2b-85dc1db18478"),
-                            Brand = "Nike",
+                            BrandId = 1,
                             CategoryId = 1,
                             Description = "Професионални футболни обувки",
                             Discount = 0,
                             ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/f4eqgsde7r0w1-BG/image",
                             Name = "Професионални бутонки Nike Mercurial Dream Speed Superfly 8 Elite FG",
                             Price = 409.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("9337cd2c-b65e-4851-82be-dfacdf135c8b"),
+                            BrandId = 1,
+                            CategoryId = 2,
+                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб PSG",
+                            Discount = 0,
+                            ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/cpryl7ozvivj1-BG/image;s=1800x1846",
+                            Name = "DRI-FIT футболен екип PSG MBAPPE",
+                            Price = 199.99m,
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("3d599ead-4054-4400-a434-6d2c2e40050a"),
+                            BrandId = 4,
+                            CategoryId = 2,
+                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб Manchester City",
+                            Discount = 0,
+                            ImageURL = "https://sportwearbg.com/image/Produkti/Futbol/Ekipi/English/Manchester%20City/23-24/home/detski-ekip-manchester-city.jpg",
+                            Name = "Puma Manchester City футболен екип 2023/2024 домакински",
+                            Price = 179.99m,
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f1162601-e372-4c94-914f-a8cbf150c2ee"),
+                            BrandId = 1,
+                            CategoryId = 2,
+                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб Liverpool",
+                            Discount = 0,
+                            ImageURL = "https://sportwearbg.com/image/Produkti/Futbol/Ekipi/English/Liverpool/23%2024/Home/detski_ekip_liverpool-2023-2024.jpg",
+                            Name = "Nike Liverpool футболен екип 2023/2024 домакински",
+                            Price = 189.99m,
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("91de93c1-7470-465a-9d6f-c4e0ca348b0f"),
+                            BrandId = 2,
+                            CategoryId = 3,
+                            Description = "Долнище и горнище за тренировки 2023/2024 Аржентина",
+                            Discount = 0,
+                            ImageURL = "https://img4.dhresource.com/webp/m/0x0/f3/albu/km/g/30/b88fd8a7-70e7-43cb-ab4d-5fd139e12cff.jpg",
+                            Name = "Анцуг за тренировка Argentina 2023/2024",
+                            Price = 165.99m,
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f33d52bd-a2fa-4d77-a2cf-bd126f003b5e"),
+                            BrandId = 1,
+                            CategoryId = 3,
+                            Description = "Долнище и горнище за тренировки 2023/2024 PSG",
+                            Discount = 0,
+                            ImageURL = "https://m.media-amazon.com/images/I/619oiA9HqZL._AC_UY1100_.jpg",
+                            Name = "Анцуг за тренировка PSG 2023/2024",
+                            Price = 185.99m,
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f83fff9a-01f9-46a9-9190-3c2bcebb1247"),
+                            BrandId = 3,
+                            CategoryId = 4,
+                            Description = "Удобна и качествена тениска Under Armour",
+                            Discount = 0,
+                            ImageURL = "https://cdn.4camping.bg/files/photos/1600/a/ad473c5b-mazhka-teniska-under-armour-hg-armour-comp-ls-cheren-black-white.jpg",
+                            Name = "Термо блуза Under Armour",
+                            Price = 35.99m,
+                            Rating = 0,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("efb16cae-f4f7-43b0-bdc5-5527c7960d11"),
+                            BrandId = 6,
+                            CategoryId = 4,
+                            Description = "Удобен термо клин на KIPSTA",
+                            Discount = 0,
+                            ImageURL = "https://contents.mediadecathlon.com/p2480341/k$bba35f387da6b9cd9450cbcc0d46db4d/dolen-kas-klin-keepcomfort-cheren.jpg?format=auto&quality=40&f=800x800",
+                            Name = "Долен къс клин KEEPCOMFORT KIPSTA",
+                            Price = 25.99m,
+                            Rating = 0,
+                            TypeId = 1
                         });
                 });
 
@@ -311,6 +418,35 @@ namespace Fasterr.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductsBuyersPurchased");
+                });
+
+            modelBuilder.Entity("Fasterr.Data.Models.Type", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Type");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Man"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Women"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -450,13 +586,29 @@ namespace Fasterr.Data.Migrations
 
             modelBuilder.Entity("Fasterr.Data.Models.Product", b =>
                 {
+                    b.HasOne("Fasterr.Data.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Fasterr.Data.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Fasterr.Data.Models.Type", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
                     b.Navigation("Category");
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("Fasterr.Data.Models.ProductBuyerCart", b =>

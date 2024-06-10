@@ -34,7 +34,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 1,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    TypeId = 1
                 },
                 new Product
                 {
@@ -46,7 +47,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 1,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    TypeId = 1
                 },
                 new Product
                 {
@@ -58,7 +60,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 1,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    TypeId = 1
                 },
 
                 //Kits-----------------------------------\/
@@ -72,7 +75,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 1,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    TypeId = 1
                 },
                 new Product
                 {
@@ -84,7 +88,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 4,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    TypeId = 1
                 },
                 new Product
                 {
@@ -96,7 +101,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 1,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    TypeId = 1
                 },
                 //Tracksuits---------------------------------\/
                 new Product
@@ -109,7 +115,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 2,
-                    CategoryId = 3
+                    CategoryId = 3,
+                    TypeId = 1
                 },
                 new Product
                 {
@@ -121,7 +128,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 1,
-                    CategoryId = 3
+                    CategoryId = 3,
+                    TypeId = 1
                 },
                 //Thermal underwear
                 new Product
@@ -134,7 +142,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 3,
-                    CategoryId = 4
+                    CategoryId = 4,
+                    TypeId = 1
                 },
                 new Product
                 {
@@ -146,7 +155,8 @@ namespace Fasterr.Data.Configuration
                     Discount = 0,
                     Rating = 0,
                     BrandId = 6,
-                    CategoryId = 4
+                    CategoryId = 4,
+                    TypeId = 1
                 },
             };
 

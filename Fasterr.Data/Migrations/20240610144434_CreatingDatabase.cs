@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Fasterr.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class CreatingDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,6 +51,19 @@ namespace Fasterr.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false, comment: "Brand name")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -61,6 +74,19 @@ namespace Fasterr.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Type",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Type", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,21 +200,35 @@ namespace Fasterr.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Product identifier"),
-                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false, comment: "Product name"),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false, comment: "Product name"),
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false, comment: "Product description"),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Product image"),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "Product price"),
                     Discount = table.Column<int>(type: "int", nullable: true, comment: "Product price discount"),
                     Rating = table.Column<int>(type: "int", nullable: false, comment: "Product rating"),
-                    CategoryId = table.Column<int>(type: "int", nullable: false, comment: "Product category identifier")
+                    BrandId = table.Column<int>(type: "int", nullable: false, comment: "Product brand"),
+                    CategoryId = table.Column<int>(type: "int", nullable: false, comment: "Product category identifier"),
+                    TypeId = table.Column<int>(type: "int", nullable: false, comment: "Product type identifier")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Products_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Type_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "Type",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -281,9 +321,19 @@ namespace Fasterr.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_BrandId",
+                table: "Products",
+                column: "BrandId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_TypeId",
+                table: "Products",
+                column: "TypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductsBuyersCart_ProductId",
@@ -329,7 +379,13 @@ namespace Fasterr.Data.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "Brands");
+
+            migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Type");
         }
     }
 }

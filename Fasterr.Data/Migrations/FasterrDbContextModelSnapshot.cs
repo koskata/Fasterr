@@ -237,11 +237,17 @@ namespace Fasterr.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Product rating");
 
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int")
+                        .HasComment("Product type identifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Products");
 
@@ -256,7 +262,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://www.futbolemotion.com/imagesarticulos/199088/grandes/bota-nike-zoom-mercurial-superfly-9-elite-fg-turquesa-0.webp",
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Elite FG Hyper Turq",
                             Price = 299.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -268,7 +275,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://thirdcoastsoccer.net/cdn/shop/products/image__80827.1657841497.1280.1280.png?v=1681567637",
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Academy FG",
                             Price = 309.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -280,7 +288,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/f4eqgsde7r0w1-BG/image",
                             Name = "Професионални бутонки Nike Mercurial Dream Speed Superfly 8 Elite FG",
                             Price = 409.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -292,7 +301,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/cpryl7ozvivj1-BG/image;s=1800x1846",
                             Name = "DRI-FIT футболен екип PSG MBAPPE",
                             Price = 199.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -304,7 +314,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://sportwearbg.com/image/Produkti/Futbol/Ekipi/English/Manchester%20City/23-24/home/detski-ekip-manchester-city.jpg",
                             Name = "Puma Manchester City футболен екип 2023/2024 домакински",
                             Price = 179.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -316,7 +327,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://sportwearbg.com/image/Produkti/Futbol/Ekipi/English/Liverpool/23%2024/Home/detski_ekip_liverpool-2023-2024.jpg",
                             Name = "Nike Liverpool футболен екип 2023/2024 домакински",
                             Price = 189.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -328,7 +340,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://img4.dhresource.com/webp/m/0x0/f3/albu/km/g/30/b88fd8a7-70e7-43cb-ab4d-5fd139e12cff.jpg",
                             Name = "Анцуг за тренировка Argentina 2023/2024",
                             Price = 165.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -340,7 +353,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://m.media-amazon.com/images/I/619oiA9HqZL._AC_UY1100_.jpg",
                             Name = "Анцуг за тренировка PSG 2023/2024",
                             Price = 185.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -352,7 +366,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://cdn.4camping.bg/files/photos/1600/a/ad473c5b-mazhka-teniska-under-armour-hg-armour-comp-ls-cheren-black-white.jpg",
                             Name = "Термо блуза Under Armour",
                             Price = 35.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         },
                         new
                         {
@@ -364,7 +379,8 @@ namespace Fasterr.Data.Migrations
                             ImageURL = "https://contents.mediadecathlon.com/p2480341/k$bba35f387da6b9cd9450cbcc0d46db4d/dolen-kas-klin-keepcomfort-cheren.jpg?format=auto&quality=40&f=800x800",
                             Name = "Долен къс клин KEEPCOMFORT KIPSTA",
                             Price = 25.99m,
-                            Rating = 0
+                            Rating = 0,
+                            TypeId = 1
                         });
                 });
 
@@ -400,6 +416,35 @@ namespace Fasterr.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductsBuyersPurchased");
+                });
+
+            modelBuilder.Entity("Fasterr.Data.Models.Type", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Type");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Man"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Women"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -551,9 +596,17 @@ namespace Fasterr.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Fasterr.Data.Models.Type", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("Fasterr.Data.Models.ProductBuyerCart", b =>

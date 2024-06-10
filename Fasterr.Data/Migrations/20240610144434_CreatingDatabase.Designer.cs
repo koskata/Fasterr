@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fasterr.Data.Migrations
 {
     [DbContext(typeof(FasterrDbContext))]
-    [Migration("20240604150028_initial")]
-    partial class initial
+    [Migration("20240610144434_CreatingDatabase")]
+    partial class CreatingDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,6 +102,25 @@ namespace Fasterr.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Fasterr.Data.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasComment("Brand name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
             modelBuilder.Entity("Fasterr.Data.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -128,6 +147,11 @@ namespace Fasterr.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Product identifier");
 
+                    b.Property<int?>("BrandId")
+                        .IsRequired()
+                        .HasColumnType("int")
+                        .HasComment("Product brand");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int")
                         .HasComment("Product category identifier");
@@ -149,8 +173,8 @@ namespace Fasterr.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)")
                         .HasComment("Product name");
 
                     b.Property<decimal>("Price")
@@ -161,9 +185,17 @@ namespace Fasterr.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Product rating");
 
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int")
+                        .HasComment("Product type identifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Products");
                 });
@@ -200,6 +232,23 @@ namespace Fasterr.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductsBuyersPurchased");
+                });
+
+            modelBuilder.Entity("Fasterr.Data.Models.Type", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Type");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -339,13 +388,29 @@ namespace Fasterr.Data.Migrations
 
             modelBuilder.Entity("Fasterr.Data.Models.Product", b =>
                 {
+                    b.HasOne("Fasterr.Data.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Fasterr.Data.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Fasterr.Data.Models.Type", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
                     b.Navigation("Category");
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("Fasterr.Data.Models.ProductBuyerCart", b =>
