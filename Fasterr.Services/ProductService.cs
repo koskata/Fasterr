@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Fasterr.Data;
 using Fasterr.Services.Interfaces;
+using Fasterr.Web.ViewModels.Enums;
 using Fasterr.Web.ViewModels.Product;
 
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,9 @@ namespace Fasterr.Services
         {
             context = _context;
         }
+
+        public async Task<IEnumerable<string>> AllCategoriesNamesAsync()
+            => await context.Categories.Select(c => c.Name).ToListAsync();
 
         public async Task<List<ProductAllViewModel>> GetAllManProductsAsync()
         {
@@ -42,9 +46,35 @@ namespace Fasterr.Services
             return products;
         }
 
-        public async Task<List<ProductAllViewModel>> GetAllProductsAsync()
+        public async Task<ProductQueryServiceModel> GetAllProductsAsync(string category = null,
+                                                                               string searchTerm = null,
+                                                                               ProductSorting sorting = ProductSorting.HighestRating)
         {
-            var products = await context.Products
+            var productsQuery = context.Products.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                productsQuery = context.Products.Where(x => x.Category.Name == category);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                productsQuery = productsQuery.Where(x =>
+                                                        x.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                                                        x.Description.ToLower().Contains(searchTerm.ToLower()) ||
+                                                        x.Brand.Name.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            productsQuery = sorting switch
+            {
+                ProductSorting.HighestPrice => productsQuery.OrderByDescending(x => x.Price),
+                ProductSorting.LowestPrice => productsQuery.OrderBy(x => x.Price),
+                ProductSorting.LowestRating => productsQuery.OrderBy(x => x.Rating),
+                _ => productsQuery.OrderByDescending(x => x.Rating)
+            };
+
+
+            var products = await productsQuery
                 .Select(x => new ProductAllViewModel()
                 {
                     Id = x.Id.ToString(),
@@ -59,7 +89,13 @@ namespace Fasterr.Services
                     Type = x.Type.Name
                 }).ToListAsync();
 
-            return products;
+            var totalProducts = productsQuery.Count();
+
+            return new ProductQueryServiceModel()
+            {
+                TotalProductsCount = totalProducts,
+                Products = products
+            };
         }
 
         public async Task<List<ProductAllViewModel>> GetAllWomanProductsAsync()
@@ -89,6 +125,7 @@ namespace Fasterr.Services
                 .Where(x => x.Id.ToString() == id)
                 .Select(x => new ProductDetailsViewModel()
                 {
+                    Id = x.Id.ToString(),
                     Name = x.Name,
                     Description = x.Description,
                     ImageURL = x.ImageURL,
@@ -104,5 +141,17 @@ namespace Fasterr.Services
 
         public async Task<bool> ProductExistsByIdAsync(string id)
             => await context.Products.AnyAsync(x => x.Id.ToString() == id);
+
+        public async Task Rate(ProductDetailsViewModel model, string productId, int rating)
+        {
+            var product = await context.Products.FirstOrDefaultAsync(x => x.Id.ToString() == productId);
+
+            if (product != null)
+            {
+                product.Rating += rating;
+
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
