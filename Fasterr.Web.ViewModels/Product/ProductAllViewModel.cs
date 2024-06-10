@@ -38,5 +38,8 @@ namespace Fasterr.Web.ViewModels.Product
 
         [Required]
         public string Category { get; set; } = string.Empty;
+
+        [Required]
+        public string Type { get; set; } = string.Empty;
     }
 }
