@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -48,13 +49,22 @@ namespace Fasterr.Data.Models
         [Comment("Product brand")]
         public int? BrandId { get; set; }
 
+        [ForeignKey(nameof(BrandId))]
         public virtual Brand? Brand { get; set; }
 
         [Required]
         [Comment("Product category identifier")]
         public int CategoryId { get; set; }
 
+        [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; } = null!;
+
+        [Required]
+        [Comment("Product type identifier")]
+        public int TypeId { get; set; }
+
+        [ForeignKey(nameof(TypeId))]
+        public virtual Type Type { get; set; } = null!;
 
         //public ICollection<ProductBuyerCart> ProductsBuyersCart { get; set; }
     }
