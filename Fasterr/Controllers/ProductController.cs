@@ -1,4 +1,5 @@
 ﻿using Fasterr.Services.Interfaces;
+using Fasterr.Web.Infrastructure;
 using Fasterr.Web.ViewModels.Product;
 
 using Microsoft.AspNetCore.Mvc;
@@ -57,7 +58,9 @@ namespace Fasterr.Controllers
 
             var model = await productService.GetProductByIdAsync(id);
 
-            await productService.Rate(model, id, rating);
+            string userId = User.GetById();
+
+            await productService.Rate(model, id, rating, userId);
 
             return RedirectToAction(nameof(Info), new { id = id });
         }

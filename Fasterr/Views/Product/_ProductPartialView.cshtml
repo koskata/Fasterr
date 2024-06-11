@@ -1,5 +1,13 @@
 ﻿@model ProductAllViewModel
 
+@{
+    double rating = 0.0;
+    if (Model.Rating > 0)
+    {
+        rating = (double)Model.Rating / (double)Model.RatingCount;
+    }
+}
+
 <style>
 
     .cardLink {
@@ -24,20 +32,20 @@
             <p class="card-text"><b>@Model.Price лв.</b></p>
         </div>
         <ul class="list-group list-group-flush">
-            @if (Model.Rating == 1)
+            @if (rating > 0 && rating < 1.50)
             {
                 <div class="d-flex p-1 gap-2">
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
                 </div>
             }
-            else if (Model.Rating == 2)
+            else if (rating >= 1.50 && rating < 2.50)
             {
                 <div class="d-flex p-1 gap-2">
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
                 </div>
             }
-            else if (Model.Rating == 3)
+            else if (rating >= 2.50 && rating < 3.50)
             {
                 <div class="d-flex p-1 gap-2">
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
@@ -45,7 +53,7 @@
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
                 </div>
             }
-            else if (Model.Rating == 4)
+            else if (rating >= 3.50 && rating < 4.50)
             {
                 <div class="d-flex p-1 gap-2">
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
@@ -54,7 +62,7 @@
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
                 </div>
             }
-            else if (Model.Rating == 5)
+            else if (rating >= 4.50 && rating <= 5)
             {
                 <div class="d-flex p-1 gap-2">
                     <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>

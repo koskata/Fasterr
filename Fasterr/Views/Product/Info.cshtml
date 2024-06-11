@@ -6,6 +6,14 @@
     ViewData["Title"] = "Product Details";
 }
 
+@{
+    double rating = 0.0;
+    if (Model.Rating > 0)
+    {
+        rating = (double)Model.Rating / (double)Model.RatingCount;
+    }
+}
+
 <style>
     .addToCart {
         opacity: 1;
@@ -45,11 +53,13 @@
 
 
     media only screen and (max-width: 600px) {
-    div.stars {
+        div .stars
+
+    {
         width: 150px;
     }
-}
 
+    }
 </style>
 
 <div class="ms-5 me-5 mt-5 text-center">
@@ -59,6 +69,52 @@
                  src="@Model.ImageURL" alt="Product Image">
         </div>
         <div class="card pt-4 col-8 d-flex flex-column gap-3 border-0">
+            <div class="d-flex flex-column align-items-center">
+                @if (rating > 0 && rating < 1.50)
+                {
+                    <div class="d-flex p-1 gap-2">
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    </div>
+                }
+                else if (rating >= 1.50 && rating < 2.50)
+                {
+                    <div class="d-flex p-1 gap-2">
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    </div>
+                }
+                else if (rating >= 2.50 && rating < 3.50)
+                {
+                    <div class="d-flex p-1 gap-2">
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    </div>
+                }
+                else if (rating >= 3.50 && rating < 4.50)
+                {
+                    <div class="d-flex p-1 gap-2">
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    </div>
+                }
+                else if (rating >= 4.50 && rating <= 5)
+                {
+                    <div class="d-flex p-1 gap-2">
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                        <img src="/images/star.png" style="width: 3rem; height: 2.5rem;"></img>
+                    </div>
+                }
+                else
+                {
+                    <h6 class="p-1 text-center">Продуктът все още не е оценен!</h6>
+                }
+            </div>
             <p style="font-size:35px;"><u>@Model.Name</u></p>
             <h4>@Model.Price лв.</h4>
             <hr></hr>

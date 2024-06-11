@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Fasterr.Data;
+using Fasterr.Data.Models;
 using Fasterr.Services.Interfaces;
 using Fasterr.Web.ViewModels.Enums;
 using Fasterr.Web.ViewModels.Product;
@@ -24,27 +25,6 @@ namespace Fasterr.Services
 
         public async Task<IEnumerable<string>> AllCategoriesNamesAsync()
             => await context.Categories.Select(c => c.Name).ToListAsync();
-
-        public async Task<List<ProductAllViewModel>> GetAllManProductsAsync()
-        {
-            var products = await context.Products
-                .Where(x => x.TypeId == 1)
-                .Select(x => new ProductAllViewModel()
-                {
-                    Id = x.Id.ToString(),
-                    Name = x.Name,
-                    Description = x.Description,
-                    ImageURL = x.ImageURL,
-                    Price = x.Price,
-                    Discount = x.Discount,
-                    Rating = x.Rating,
-                    Brand = x.Brand.Name,
-                    Category = x.Category.Name,
-                    Type = x.Type.Name
-                }).ToListAsync();
-
-            return products;
-        }
 
         public async Task<ProductQueryServiceModel> GetAllProductsAsync(string category = null,
                                                                                string searchTerm = null,
@@ -86,7 +66,8 @@ namespace Fasterr.Services
                     Rating = x.Rating,
                     Brand = x.Brand.Name,
                     Category = x.Category.Name,
-                    Type = x.Type.Name
+                    Type = x.Type.Name,
+                    RatingCount = x.ProductsBuyersRate.Count()
                 }).ToListAsync();
 
             var totalProducts = productsQuery.Count();
@@ -97,28 +78,6 @@ namespace Fasterr.Services
                 Products = products
             };
         }
-
-        public async Task<List<ProductAllViewModel>> GetAllWomanProductsAsync()
-        {
-            var products = await context.Products
-                .Where(x => x.TypeId == 2)
-                .Select(x => new ProductAllViewModel()
-                {
-                    Id = x.Id.ToString(),
-                    Name = x.Name,
-                    Description = x.Description,
-                    ImageURL = x.ImageURL,
-                    Price = x.Price,
-                    Discount = x.Discount,
-                    Rating = x.Rating,
-                    Brand = x.Brand.Name,
-                    Category = x.Category.Name,
-                    Type = x.Type.Name
-                }).ToListAsync();
-
-            return products;
-        }
-
         public async Task<ProductDetailsViewModel> GetProductByIdAsync(string id)
         {
             var model = await context.Products
@@ -133,7 +92,8 @@ namespace Fasterr.Services
                     Discount = x.Discount,
                     Rating = x.Rating,
                     Brand = x.Brand.Name,
-                    Category = x.Category.Name
+                    Category = x.Category.Name,
+                    RatingCount = x.ProductsBuyersRate.Count()
                 }).FirstOrDefaultAsync();
 
             return model;
@@ -142,13 +102,21 @@ namespace Fasterr.Services
         public async Task<bool> ProductExistsByIdAsync(string id)
             => await context.Products.AnyAsync(x => x.Id.ToString() == id);
 
-        public async Task Rate(ProductDetailsViewModel model, string productId, int rating)
+        public async Task Rate(ProductDetailsViewModel model, string productId, int rating, string userId)
         {
             var product = await context.Products.FirstOrDefaultAsync(x => x.Id.ToString() == productId);
 
             if (product != null)
             {
                 product.Rating += rating;
+
+                var productBuyerRate = new ProductBuyerRate()
+                {
+                    BuyerId = Guid.Parse(userId),
+                    ProductId = Guid.Parse(productId)
+                };
+
+                await context.ProductsBuyersRate.AddAsync(productBuyerRate);
 
                 await context.SaveChangesAsync();
             }

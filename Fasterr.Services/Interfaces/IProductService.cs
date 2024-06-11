@@ -19,12 +19,8 @@ namespace Fasterr.Services.Interfaces
 
         Task<bool> ProductExistsByIdAsync(string id);
 
-        Task<List<ProductAllViewModel>> GetAllManProductsAsync();
-
-        Task<List<ProductAllViewModel>> GetAllWomanProductsAsync();
-
         Task<IEnumerable<string>> AllCategoriesNamesAsync();
 
-        Task Rate(ProductDetailsViewModel model, string productId, int rating);
+        Task Rate(ProductDetailsViewModel model, string productId, int rating, string userId);
     }
 }
