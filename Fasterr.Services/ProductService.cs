@@ -102,11 +102,18 @@ namespace Fasterr.Services
         public async Task<bool> ProductExistsByIdAsync(string id)
             => await context.Products.AnyAsync(x => x.Id.ToString() == id);
 
-        public async Task Rate(ProductDetailsViewModel model, string productId, int rating, string userId)
+        public async Task<bool> Rate(ProductDetailsViewModel model, string productId, int rating, string userId)
         {
             var product = await context.Products.FirstOrDefaultAsync(x => x.Id.ToString() == productId);
 
-            if (product != null)
+            bool isAny = false;
+
+            if (await context.ProductsBuyersRate.AnyAsync(x => x.BuyerId.ToString() == userId && x.ProductId.ToString() == productId))
+            {
+                isAny = true;
+            }
+
+            if (product != null && isAny == false)
             {
                 product.Rating += rating;
 
@@ -120,6 +127,8 @@ namespace Fasterr.Services
 
                 await context.SaveChangesAsync();
             }
+
+            return isAny;
         }
     }
 }
