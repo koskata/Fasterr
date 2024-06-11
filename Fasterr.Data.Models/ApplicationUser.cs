@@ -13,6 +13,7 @@ namespace Fasterr.Data.Models
         {
             Cart = new HashSet<ProductBuyerCart>();
             PurchasedProducts = new HashSet<ProductBuyerPurchased>();
+            ProductsBuyersRate = new HashSet<ProductBuyerRate>();
         }
 
         [Required]
@@ -28,5 +29,7 @@ namespace Fasterr.Data.Models
         public virtual ICollection<ProductBuyerCart> Cart { get; set; }
 
         public virtual ICollection<ProductBuyerPurchased> PurchasedProducts { get; set; }
+
+        public virtual ICollection<ProductBuyerRate> ProductsBuyersRate { get; set; }
     }
 }

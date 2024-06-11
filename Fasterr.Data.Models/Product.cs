@@ -13,6 +13,7 @@ namespace Fasterr.Data.Models
         {
             Id = Guid.NewGuid();
             //ProductsBuyersCart = new HashSet<ProductBuyerCart>();
+            ProductsBuyersRate = new HashSet<ProductBuyerRate>();
         }
 
         [Key]
@@ -67,5 +68,7 @@ namespace Fasterr.Data.Models
         public virtual Type Type { get; set; } = null!;
 
         //public ICollection<ProductBuyerCart> ProductsBuyersCart { get; set; }
+
+        public virtual ICollection<ProductBuyerRate> ProductsBuyersRate { get; set; }
     }
 }
