@@ -41,5 +41,8 @@ namespace Fasterr.Web.ViewModels.Product
 
         [Required]
         public string Type { get; set; } = string.Empty;
+
+        [Required]
+        public int RatingCount { get; set; }
     }
 }
