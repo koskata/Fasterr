@@ -49,6 +49,11 @@ namespace Fasterr.Controllers
         [HttpPost]
         public async Task<IActionResult> GiveRating(string id, string star)
         {
+            if (star == null)
+            {
+                return RedirectToAction(nameof(Info), new { id = id });
+            }
+
             int rating = int.Parse(star);
 
             if (!await productService.ProductExistsByIdAsync(id))
@@ -60,7 +65,12 @@ namespace Fasterr.Controllers
 
             string userId = User.GetById();
 
-            await productService.Rate(model, id, rating, userId);
+            bool isAny = await productService.Rate(model, id, rating, userId);
+
+            if (isAny)
+            {
+                return BadRequest();
+            }
 
             return RedirectToAction(nameof(Info), new { id = id });
         }
