@@ -24,7 +24,24 @@ namespace Fasterr.Controllers
                 query.Sorting);
 
             query.TotalProductsCount = queryResult.TotalProductsCount;
-            query.Products = queryResult.Products;
+            query.Products = queryResult.Products.Where(x => x.Type == "Man");
+
+            var productCategories = await productService.AllCategoriesNamesAsync();
+            query.Categories = productCategories;
+
+            return View(query);
+        }
+
+        public async Task<IActionResult> AllForWomen([FromQuery] AllProductsQueryModel query /*string type*/)
+        {
+
+            var queryResult = await productService.GetAllProductsAsync(
+                query.Category,
+                query.SearchTerm,
+                query.Sorting);
+
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+            query.Products = queryResult.Products.Where(x => x.Type == "Women");
 
             var productCategories = await productService.AllCategoriesNamesAsync();
             query.Categories = productCategories;
