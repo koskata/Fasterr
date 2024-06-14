@@ -58,7 +58,7 @@ footer {
 
 .navigaciq {
     min-height: 10vh;
-    background-color: #E0E0E0;
+    background-color: #F3F3F3;
     box-shadow: 20px;
 }
 
@@ -67,7 +67,7 @@ header {
 }
 
 footer {
-    background-color: #E0E0E0;
+    background-color: #F3F3F3;
 }
 
 .title {
@@ -150,4 +150,150 @@ label.star:hover {
 label.star:before {
     content: '\f006';
     font-family: FontAwesome;
+}
+
+/* Profile button ---------------------------*/
+
+.profileBtn {
+    --border: 3px; /* the border width */
+    --slant: 0.5em; /* control the slanted corners */
+    --color: #37E8FC; /* the color */
+
+    font-size: 20px;
+    padding: 0.4em 1.2em;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color);
+    background: linear-gradient(to bottom left,var(--color) 50%,#0000 50.1%) top right, linear-gradient(to top right,var(--color) 50%,#0000 50.1%) bottom left;
+    background-size: calc(var(--slant) + 1.3*var(--border)) calc(var(--slant) + 1.3*var(--border));
+    background-repeat: no-repeat;
+    box-shadow: 0 0 0 200px inset var(--s,#0000), 0 0 0 var(--border) inset var(--color);
+    clip-path: polygon(0 0, calc(100% - var(--slant)) 0, 100% var(--slant), 100% 100%, var(--slant) 100%,0 calc(100% - var(--slant)) );
+    transition: color var(--t,0.3s), background-size 0.3s;
+}
+
+    .profileBtn:focus-visible {
+        outline-offset: calc(-1*var(--border));
+        outline: var(--border) solid #000c;
+        clip-path: none;
+        background-size: 0 0;
+    }
+
+    .profileBtn:hover,
+    .profileBtn:active {
+        background-size: 100% 100%;
+        color: #fff;
+        --t: 0.2s 0.1s;
+    }
+
+    .profileBtn:active {
+        --s: #0005;
+        transition: none;
+    }
+
+/* Buttons for products ------------------------*/
+
+.btnForProducts {
+    position: relative;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    padding: 1rem 3rem;
+    transition: 0.2s;
+}
+
+    .btnForProducts:hover {
+        letter-spacing: 0.2rem;
+        padding: 1.1rem 3.1rem;
+        background: var(--clr);
+        color: var(--clr);
+        box-shadow: 0 0 35px var(--clr);
+        animation: box 3s infinite;
+    }
+
+    .btnForProducts::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: #272822;
+    }
+
+    .btnForProducts span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btnForProducts i {
+        position: absolute;
+        inset: 0;
+        display: block;
+    }
+
+        .btnForProducts i::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            left: 80%;
+            top: -2px;
+            border: 2px solid var(--clr);
+            background: #272822;
+            transition: 0.2s;
+        }
+
+    .btnForProducts:hover i::before {
+        width: 15px;
+        left: 20%;
+        animation: move 3s infinite;
+    }
+
+    .btnForProducts i::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 2px;
+        left: 20%;
+        bottom: -2px;
+        border: 2px solid var(--clr);
+        background: #272822;
+        transition: 0.2s;
+    }
+
+    .btnForProducts:hover i::after {
+        width: 15px;
+        left: 80%;
+        animation: move 3s infinite;
+    }
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes box {
+    0% {
+        box-shadow: #27272c;
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--clr);
+    }
+
+    100% {
+        box-shadow: #27272c;
+    }
 }
