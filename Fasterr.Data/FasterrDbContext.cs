@@ -30,11 +30,14 @@ namespace Fasterr.Data
         public DbSet<Models.Type> Types { get; set; }
         public DbSet<ProductBuyerRate> ProductsBuyersRate { get; set; }
 
+        public DbSet<ProductBuyerLike> ProductsBuyersLike { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ProductBuyerCart>().HasKey(x => new { x.BuyerId, x.ProductId });
             builder.Entity<ProductBuyerPurchased>().HasKey(x => new { x.BuyerId, x.ProductId });
             builder.Entity<ProductBuyerRate>().HasKey(x => new { x.BuyerId, x.ProductId });
+            builder.Entity<ProductBuyerLike>().HasKey(x => new { x.BuyerId, x.ProductId });
 
             builder.ApplyConfiguration(new CategoryEntityConfiguration());
             builder.ApplyConfiguration(new BrandEntityConfiguration());
