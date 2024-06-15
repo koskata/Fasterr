@@ -1,4 +1,6 @@
-﻿@model ProductDetailsViewModel
+﻿@using Fasterr.Services.Interfaces
+@model ProductDetailsViewModel
+@inject IProductService productService
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
 
@@ -15,52 +17,9 @@
 }
 
 <style>
-    .addToCart {
-        opacity: 1;
-        transition: opacity 0.5s;
-    }
 
-        .addToCart:hover {
-            opacity: 0.65;
-        }
-
-    .loveBtn:hover {
-        background-color: #DDD;
-    }
-
-    /* ------------------- */
-
-    .firstStar:hover {
-        background-color: yellow;
-    }
-
-    .secondStar:hover {
-        background-color: yellow;
-    }
-
-
-
-    .submitRating {
-        background-color: #04AA6D;
-        border: none;
-        color: white;
-        padding: 8px 32px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 0.5em;
-    }
-
-
-    media only screen and (max-width: 600px) {
-        div .stars
-
-    {
-        width: 150px;
-    }
-
-    }
 </style>
+
 
 <div class="ms-5 me-5 mt-5 text-center">
     <div class="row">
@@ -125,7 +84,8 @@
 
             <div class="row ps-4 gap-5">
                 <a class="btn text-white col-10 addToCart" style="background-color: #BF0300; font-size: 1.6em;">Добави в количка</a>
-                <a class="btn col-1 loveBtn"><img src="~/images/heart.png" class="loveImg" style="width: 1.6em;"></a>
+
+                <a asp-area="" asp-controller="Product" asp-action="Like" asp-route-id="@Model.Id" class="btn col-1 loveBtn" style="font-size: 1.6em;" data-bs-placement="top" data-bs-toggle="popover" data-bs-content="Liked">&#x2764;</a>
             </div>
 
             <div class="text-start ps-3">
@@ -150,3 +110,11 @@
         </div>
     </div>
 </div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+</script>
