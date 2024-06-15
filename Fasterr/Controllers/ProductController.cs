@@ -82,12 +82,28 @@ namespace Fasterr.Controllers
 
             string userId = User.GetById();
 
-            bool isAny = await productService.Rate(model, id, rating, userId);
+            bool isAny = await productService.RateAsync(model, id, rating, userId);
 
             if (isAny)
             {
                 return BadRequest();
             }
+
+            return RedirectToAction(nameof(Info), new { id = id });
+        }
+
+        public async Task<IActionResult> Like(string id)
+        {
+            if (!await productService.ProductExistsByIdAsync(id))
+            {
+                return BadRequest();
+            }
+
+            string userId = User.GetById();
+
+            var model = await productService.GetProductByIdAsync(id);
+
+            bool isAny = await productService.LikeAsync(model, id, userId);
 
             return RedirectToAction(nameof(Info), new { id = id });
         }

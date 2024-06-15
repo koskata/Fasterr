@@ -21,6 +21,9 @@ namespace Fasterr.Services.Interfaces
 
         Task<IEnumerable<string>> AllCategoriesNamesAsync();
 
-        Task<bool> Rate(ProductDetailsViewModel model, string productId, int rating, string userId);
+        Task<bool> RateAsync(ProductDetailsViewModel model, string productId, int rating, string userId);
+
+        Task<bool> LikeAsync(ProductDetailsViewModel model, string productId, string userId);
+
     }
 }

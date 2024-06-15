@@ -99,10 +99,38 @@ namespace Fasterr.Services
             return model;
         }
 
+        public async Task<bool> LikeAsync(ProductDetailsViewModel model, string productId, string userId)
+        {
+            var product = await context.Products.FirstOrDefaultAsync(x => x.Id.ToString() == productId);
+
+            bool isAny = false;
+
+            var productBuyerLike = new ProductBuyerLike()
+            {
+                BuyerId = Guid.Parse(userId),
+                ProductId = Guid.Parse(productId)
+            };
+
+            if (!await context.ProductsBuyersLike.AnyAsync(x => x.BuyerId.ToString() == userId && x.ProductId.ToString() == productId))
+            {
+                await context.ProductsBuyersLike.AddAsync(productBuyerLike);
+            }
+            else
+            {
+                context.ProductsBuyersLike.Remove(productBuyerLike);
+
+                isAny = true;
+            }
+
+            await context.SaveChangesAsync();
+
+            return isAny;
+        }
+
         public async Task<bool> ProductExistsByIdAsync(string id)
             => await context.Products.AnyAsync(x => x.Id.ToString() == id);
 
-        public async Task<bool> Rate(ProductDetailsViewModel model, string productId, int rating, string userId)
+        public async Task<bool> RateAsync(ProductDetailsViewModel model, string productId, int rating, string userId)
         {
             var product = await context.Products.FirstOrDefaultAsync(x => x.Id.ToString() == productId);
 
