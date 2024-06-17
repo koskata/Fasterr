@@ -23,6 +23,20 @@ namespace Fasterr.Services
             context = _context;
         }
 
+        public async Task AddToCartAsync(ProductDetailsViewModel model, string productId, string userId)
+        {
+            var product = await context.Products.FirstOrDefaultAsync(x => x.Id.ToString() == productId);
+
+            var productBuyerCart = new ProductBuyerCart()
+            {
+                BuyerId = Guid.Parse(userId),
+                ProductId = Guid.Parse(productId)
+            };
+
+            await context.ProductsBuyersCart.AddAsync(productBuyerCart);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<string>> AllCategoriesNamesAsync()
             => await context.Categories.Select(c => c.Name).ToListAsync();
 
@@ -78,6 +92,28 @@ namespace Fasterr.Services
                 Products = products
             };
         }
+
+        public async Task<List<ProductCartViewModel>> GetAllProductsInCartAsync(string userId)
+        {
+            var products = await context.ProductsBuyersCart
+                .Where(x => x.BuyerId.ToString() == userId)
+                .Select(x => new ProductCartViewModel()
+                {
+                    Id = x.ProductId.ToString(),
+                    Name = x.Product.Name,
+                    Description = x.Product.Description,
+                    ImageURL = x.Product.ImageURL,
+                    Price = x.Product.Price,
+                    Discount = x.Product.Discount,
+                    Rating = x.Product.Rating,
+                    Type = x.Product.Type.Name
+                })
+                .ToListAsync();
+
+            return products;
+
+        }
+
         public async Task<ProductDetailsViewModel> GetProductByIdAsync(string id)
         {
             var model = await context.Products
