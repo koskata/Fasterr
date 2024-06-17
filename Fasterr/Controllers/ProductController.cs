@@ -107,5 +107,31 @@ namespace Fasterr.Controllers
 
             return RedirectToAction(nameof(Info), new { id = id });
         }
+
+
+        public async Task<IActionResult> AddToCart(string id)
+        {
+            if (!await productService.ProductExistsByIdAsync(id))
+            {
+                return BadRequest();
+            }
+
+            var model = await productService.GetProductByIdAsync(id);
+
+            var userId = User.GetById();
+
+            await productService.AddToCartAsync(model, id, userId);
+
+            return RedirectToAction(nameof(Cart), "Product");
+        }
+
+        public async Task<IActionResult> Cart()
+        {
+            string userId = User.GetById();
+
+            await productService.GetAllProductsInCartAsync(userId);
+
+            return View(userId);
+        }
     }
 }
