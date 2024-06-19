@@ -83,7 +83,7 @@
             @* ----------- *@
 
             <div class="row ps-4 gap-5">
-                <a class="btn text-white col-10 addToCart" style="background-color: #BF0300; font-size: 1.6em;">Добави в количка</a>
+                <a asp-area="" asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn text-white col-10 addToCart" style="background-color: #BF0300; font-size: 1.6em;">Добави в количка</a>
 
                 <a asp-area="" asp-controller="Product" asp-action="Like" asp-route-id="@Model.Id" class="btn col-1 loveBtn" style="font-size: 1.6em;" data-bs-placement="top" data-bs-toggle="popover" data-bs-content="Liked">&#x2764;</a>
             </div>
