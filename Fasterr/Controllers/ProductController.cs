@@ -129,9 +129,9 @@ namespace Fasterr.Controllers
         {
             string userId = User.GetById();
 
-            await productService.GetAllProductsInCartAsync(userId);
+            var products = await productService.GetAllProductsInCartAsync(userId);
 
-            return View(userId);
+            return View(products);
         }
     }
 }
