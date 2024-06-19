@@ -93,11 +93,11 @@ namespace Fasterr.Services
             };
         }
 
-        public async Task<List<ProductCartViewModel>> GetAllProductsInCartAsync(string userId)
+        public async Task<List<ProductAllViewModel>> GetAllProductsInCartAsync(string userId)
         {
             var products = await context.ProductsBuyersCart
                 .Where(x => x.BuyerId.ToString() == userId)
-                .Select(x => new ProductCartViewModel()
+                .Select(x => new ProductAllViewModel()
                 {
                     Id = x.ProductId.ToString(),
                     Name = x.Product.Name,
@@ -106,7 +106,10 @@ namespace Fasterr.Services
                     Price = x.Product.Price,
                     Discount = x.Product.Discount,
                     Rating = x.Product.Rating,
-                    Type = x.Product.Type.Name
+                    Brand = x.Product.Brand.Name,
+                    Category = x.Product.Category.Name,
+                    Type = x.Product.Type.Name,
+                    RatingCount = x.Product.ProductsBuyersRate.Count()
                 })
                 .ToListAsync();
 

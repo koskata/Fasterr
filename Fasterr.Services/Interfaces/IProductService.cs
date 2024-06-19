@@ -27,7 +27,7 @@ namespace Fasterr.Services.Interfaces
 
         Task AddToCartAsync(ProductDetailsViewModel model, string productId, string userId);
 
-        Task<List<ProductCartViewModel>> GetAllProductsInCartAsync(string userId);
+        Task<List<ProductAllViewModel>> GetAllProductsInCartAsync(string userId);
 
     }
 }
