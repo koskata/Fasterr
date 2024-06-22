@@ -21,17 +21,16 @@
 </style>
 
 <a asp-area="" asp-controller="Product" asp-action="Info" asp-route-id="@Model.Id" class="cardLink" style="text-decoration: none; color: inherit;">
-    <div class="card" style="width: 22rem; border: 1px solid black; height: auto;">
+    <div class="card" style="width: 22rem; height: auto;">
         <img src="@Model.ImageURL" class="card-img-top" alt="..." style="width: auto; height: 18rem;">
         <div class="card-img-overlay">
             <h5 style="color: lawngreen;" class="fw-bolder text-end">Наличен</h5>
         </div>
-        <hr></hr>
-        <div class="card-body">
+        <div class="card-body" style="background-color: #E8E8E8;">
             <h5 class="card-title">@Model.Name</h5>
             <p class="card-text"><b>@Model.Price лв.</b></p>
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" style="background-color: #E8E8E8;">
             @if (rating > 0 && rating < 1.50)
             {
                 <div class="d-flex p-1 gap-2">
