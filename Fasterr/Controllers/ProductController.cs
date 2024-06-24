@@ -2,6 +2,7 @@
 using Fasterr.Web.Infrastructure;
 using Fasterr.Web.ViewModels.Product;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fasterr.Controllers
@@ -62,7 +63,7 @@ namespace Fasterr.Controllers
             return View(model);
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> GiveRating(string id, string star)
         {
@@ -92,6 +93,7 @@ namespace Fasterr.Controllers
             return RedirectToAction(nameof(Info), new { id = id });
         }
 
+        [Authorize]
         public async Task<IActionResult> Like(string id)
         {
             if (!await productService.ProductExistsByIdAsync(id))
@@ -108,7 +110,7 @@ namespace Fasterr.Controllers
             return RedirectToAction(nameof(Info), new { id = id });
         }
 
-
+        [Authorize]
         public async Task<IActionResult> AddToCart(string id)
         {
             if (!await productService.ProductExistsByIdAsync(id))
@@ -125,6 +127,7 @@ namespace Fasterr.Controllers
             return RedirectToAction(nameof(Cart), "Product");
         }
 
+        [Authorize]
         public async Task<IActionResult> Cart()
         {
             string userId = User.GetById();
