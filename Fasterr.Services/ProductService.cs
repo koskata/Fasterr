@@ -197,5 +197,17 @@ namespace Fasterr.Services
 
             return isAny;
         }
+
+        public async Task RemoveProductFromCartAsync(string userId, string productId)
+        {
+            var model = new ProductBuyerCart()
+            {
+                BuyerId = Guid.Parse(userId),
+                ProductId = Guid.Parse(productId)
+            };
+
+            context.ProductsBuyersCart.Remove(model);
+            await context.SaveChangesAsync();
+        }
     }
 }

@@ -29,5 +29,7 @@ namespace Fasterr.Services.Interfaces
 
         Task<List<ProductAllViewModel>> GetAllProductsInCartAsync(string userId);
 
+        Task RemoveProductFromCartAsync(string userId, string productId);
+
     }
 }
