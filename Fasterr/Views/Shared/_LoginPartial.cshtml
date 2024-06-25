@@ -5,7 +5,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-            <a style="--color:#69db3a;--slant:20px;--border:3px" class="nav-link text-dark btn btn-lg ps-3 pe-3 profileBtn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Профил</a>
+            <a style="--color:#32a875;--slant:20px;--border:3px" class="nav-link text-dark btn btn-lg ps-3 pe-3 profileBtn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Профил</a>
     </li>
     <li class="nav-item ps-3 pe-4">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -16,10 +16,10 @@
 else
 {
     <li class="nav-item">
-            <a class="nav-link text-dark btn btn-outline-secondary radiusBtns btn-lg ps-3 pe-3" asp-area="Identity" asp-page="/Account/Register">Създай акаунт</a>
+            <a style="--color:#32a875;--slant:20px;--border:3px" class="nav-link text-dark btn radiusBtns btn-lg ps-3 pe-3 profileBtn" asp-area="Identity" asp-page="/Account/Register">Създай акаунт</a>
     </li>
     <li class="nav-item ps-4 pe-4">
-            <a class="nav-link text-dark btn btn-secondary text-white radiusBtns btn-lg ps-3 pe-3" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+            <a style="--color:#3285a8;--slant:20px;--border:3px" class="nav-link text-dark btn radiusBtns btn-lg ps-3 pe-3 profileBtn" asp-area="Identity" asp-page="/Account/Login">Вход</a>
     </li>
 }
 </ul>
