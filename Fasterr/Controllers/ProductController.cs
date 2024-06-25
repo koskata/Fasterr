@@ -136,5 +136,20 @@ namespace Fasterr.Controllers
 
             return View(products);
         }
+
+        [Authorize]
+        public async Task<IActionResult> RemoveFromCart(string id)
+        {
+            if (!await productService.ProductExistsByIdAsync(id))
+            {
+                return BadRequest();
+            }
+
+            string userId = User.GetById();
+
+            await productService.RemoveProductFromCartAsync(userId, id);
+
+            return RedirectToAction(nameof(Cart));
+        }
     }
 }
