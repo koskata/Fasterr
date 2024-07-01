@@ -1,6 +1,10 @@
 ﻿@model ProductAllViewModel
 
 @{
+    decimal? discount = Model.Discount / 100;
+    decimal? discount2 = Model.Price * discount;
+    decimal? priceWithDiscount = Model.Price - discount2;
+
     double rating = 0.0;
     if (Model.Rating > 0)
     {
@@ -18,17 +22,48 @@
         .cardLink:hover {
             opacity: 0.65;
         }
+
+    .chip {
+        padding: 8px 10px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.25);
+        cursor: pointer;
+    }
+
+        .chip.danger {
+            background-color: #d61204;
+            color: whitesmoke;
+        }
 </style>
 
 <a asp-area="" asp-controller="Product" asp-action="Info" asp-route-id="@Model.Id" class="cardLink" style="text-decoration: none; color: inherit;">
     <div class="card" style="width: 22rem; height: auto;">
         <img src="@Model.ImageURL" class="card-img-top" alt="..." style="width: auto; height: 18rem;">
+        @if (Model.Discount > 0)
+        {
+            <div class="card-img-overlay text-start">
+                <span class="chip danger">
+                    -@String.Format("{0:0}", @Model.Discount)%
+                </span>
+            </div>
+        }
         <div class="card-img-overlay">
             <h5 style="color: lawngreen;" class="fw-bolder text-end">Наличен</h5>
         </div>
         <div class="card-body" style="background-color: #E8E8E8;">
             <h5 class="card-title">@Model.Name</h5>
-            <p class="card-text"><b>@Model.Price лв.</b></p>
+            @if (Model.Discount > 0)
+            {
+                <span class="card-text"><b><s>@Model.Price лв.</s></b></span>
+                <span style="color: red; padding-left: 0.5em;"><b>@String.Format("{0:0.00}", @priceWithDiscount) лв.</b></span>
+            }
+            else
+            {
+                <p class="card-text"><b>@Model.Price лв.</b></p>
+            }
+            
         </div>
         <ul class="list-group list-group-flush" style="background-color: #E8E8E8;">
             @if (rating > 0 && rating < 1.50)
