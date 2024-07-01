@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -45,17 +47,45 @@ footer {
 }
 
 .carousel-item {
-    height: 52rem;
+    height: 62rem;
 }
 
 .carouselMy {
-    height: 52rem;
+    height: 62rem;
 }
 
+.womenBtnCar {
+    background-color: pink;
+    border-color: pink;
+}
+
+.womenBtnCar:hover {
+    background-color: hotpink;
+    border-color: hotpink;
+}
+
+.menBtnCar {
+    background-color: mediumspringgreen;
+    border-color: mediumspringgreen;
+}
+
+.menBtnCar:hover {
+    background-color: mediumseagreen;
+    border-color: mediumseagreen;
+}
+
+.discountsBtnCar {
+    background-color: #E0AC52;
+    border-color: #E0AC52;
+}
+
+    .discountsBtnCar:hover {
+        background-color: orange;
+        border-color: orange;
+    }
 /* Layout 
     ----------------------------------------------------
 */
-
 .navigaciq {
     min-height: 10vh;
     background-color: #F3F3F3;
@@ -297,3 +327,55 @@ label.star:before {
         box-shadow: #27272c;
     }
 }
+
+
+/* Info --------------------------------*/
+
+.addToCart {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+    .addToCart:hover {
+        opacity: 0.65;
+    }
+
+.loveBtn:hover {
+    background-color: #DDD;
+}
+
+/* ------------------- */
+
+.firstStar:hover {
+    background-color: yellow;
+}
+
+.secondStar:hover {
+    background-color: yellow;
+}
+
+
+
+.submitRating {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 0.5em;
+}
+
+
+media only screen and (max-width: 600px) {
+    div .stars
+
+{
+    width: 150px;
+}
+}
+
+
+
+/* ProductPartialView --------------------------------*/
