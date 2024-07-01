@@ -27,7 +27,7 @@ namespace Fasterr.Web.ViewModels.Product
         [Required]
         public decimal Price { get; set; }
 
-        public int? Discount { get; set; }
+        public decimal? Discount { get; set; }
 
         [Required]
         [Range(1, 5)]
