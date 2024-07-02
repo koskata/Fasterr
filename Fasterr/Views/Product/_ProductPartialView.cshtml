@@ -12,32 +12,6 @@
     }
 }
 
-<style>
-
-    .cardLink {
-        opacity: 1;
-        transition: opacity 0.5s;
-    }
-
-        .cardLink:hover {
-            opacity: 0.65;
-        }
-
-    .chip {
-        padding: 8px 10px;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 15px;
-        box-shadow: 0 2px 5px rgba(0,0,0,.25);
-        cursor: pointer;
-    }
-
-        .chip.danger {
-            background-color: #d61204;
-            color: whitesmoke;
-        }
-</style>
-
 <a asp-area="" asp-controller="Product" asp-action="Info" asp-route-id="@Model.Id" class="cardLink" style="text-decoration: none; color: inherit;">
     <div class="card" style="width: 22rem; height: auto;">
         <img src="@Model.ImageURL" class="card-img-top" alt="..." style="width: auto; height: 18rem;">
