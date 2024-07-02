@@ -6,8 +6,16 @@
     decimal womenSum = 0.0m;
     decimal delivery = 0.0m;
 
+    decimal? allDiscounts = 0.0m;
+
     foreach (var product in Model)
     {
+        decimal? discount = product.Discount / 100;
+        decimal? discount2 = product.Price * discount;
+        decimal? priceWithDiscount = product.Price - discount2;
+
+        allDiscounts += discount2;
+
         if (product.Type == "Man")
         {
             menSum += product.Price;
@@ -18,7 +26,10 @@
         }
 
         totalSum += product.Price;
+
     }
+
+    totalSum -= allDiscounts??0;
 
     if (totalSum < 99 && totalSum > 0)
     {
@@ -57,11 +68,11 @@
     <div class="vl"></div>
 
     <div class="cartSection p-4 text-end" style="background-color:#eee; border: 1px solid black; min-width: 35vw; height: 50vh; border-radius: 0.4em;">
-        <p style="font-size: 1.6em;">Стойност на продуктите: <b>@totalSum</b> лв.</p>
+        <p style="font-size: 1.6em;">Стойност на продуктите: <b>@String.Format("{0:0.00}", @totalSum)</b> лв.</p>
         <hr></hr>
         <p style="font-size: 1.2em;">Продукти Мъже: <b>@menSum</b> лв.</p>
         <p style="font-size: 1.2em;">Продукти Жени: <b>@womenSum</b> лв.</p>
-        <p style="font-size: 1.2em;">Намаление: </p>
+        <p style="font-size: 1.2em;">Отстъпка: <b>@String.Format("{0:0.00}", @allDiscounts)</b> лв.</p>
         <hr></hr>
 
         <p style="font-size: 1.2em;">Доставка: <b>@delivery</b> лв.</p>
