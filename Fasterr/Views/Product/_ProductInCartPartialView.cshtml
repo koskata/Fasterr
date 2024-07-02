@@ -1,6 +1,10 @@
 ﻿@model ProductAllViewModel
 
 @{
+    decimal? discount = Model.Discount / 100;
+    decimal? discount2 = Model.Price * discount;
+    decimal? priceWithDiscount = Model.Price - discount2;
+
     double rating = 0.0;
     if (Model.Rating > 0)
     {
@@ -8,69 +12,32 @@
     }
 }
 
-<style>
-
-    .cardLink {
-        opacity: 1;
-        transition: opacity 0.5s;
-    }
-
-    .cardLink:hover {
-        opacity: 0.65;
-    }
-
-    .deleteProductFromCartBtn {
-        position: relative;
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-        border: 2px solid rgb(231, 50, 50);
-        background-color: #fff;
-        cursor: pointer;
-        box-shadow: 0 0 10px #333;
-        overflow: hidden;
-        transition: .3s;
-    }
-
-    .deleteProductFromCartBtn:hover {
-        background-color: rgb(245, 207, 207);
-        transform: scale(1.2);
-        box-shadow: 0 0 4px #111;
-        transition: .3s;
-    }
-
-    .deleteBtnImage {
-        color: rgb(231, 50, 50);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: .3s;
-    }
-
-    .deleteProductFromCartBtn:focus .deleteBtnImage {
-        opacity: 0;
-        transition: .3s;
-    }
-
-    .deleteProductFromCartBtn:focus {
-        width: 150px;
-        height: 50px;
-        transition: .3s;
-    }
-</style>
-
 <a asp-area="" asp-controller="Product" asp-action="Info" asp-route-id="@Model.Id" class="cardLink" style="text-decoration: none; color: inherit;">
     <div class="card" style="border: 1px solid black; border-radius: 0.4em; max-height: 10.5em;">
         <div class="d-flex g-0 " style="background-color: #E8E8E8; max-height: 10.3em; border-radius: 0.5em;">
             <div class="">
                 <img src="@Model.ImageURL" class="img-fluid rounded-start" style="max-height: 10.3em; border-radius: 0.5em;">
             </div>
-
+            @if (Model.Discount > 0)
+            {
+                <div class="card-img-overlay text-start">
+                    <span class="chip danger">
+                        -@String.Format("{0:0}", @Model.Discount)%
+                    </span>
+                </div>
+            }
             <div class="card-body d-flex gap-4 justify-content-between">
                 <span>
                     <h5 class="card-title">@Model.Name</h5>
-                    <p class="card-text"><b>@Model.Price лв.</b></p>
+                    @if (Model.Discount > 0)
+                    {
+                        <span class="card-text"><b><s>@Model.Price лв.</s></b></span>
+                        <span style="color: red; padding-left: 0.5em;"><b>@String.Format("{0:0.00}", @priceWithDiscount) лв.</b></span>
+                    }
+                    else
+                    {
+                        <p class="card-text"><b>@Model.Price лв.</b></p>
+                    }
                     <hr></hr>
                     <div class="d-flex flex-column align-items-center">
                         @if (rating > 0 && rating < 1.50)
