@@ -5,7 +5,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-            <a style="--color:#32a875;--slant:20px;--border:3px" class="nav-link text-dark btn btn-lg ps-3 pe-3 profileBtn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Профил</a>
+            <a style="--color:#32a875;--slant:20px;--border:3px" class="nav-link text-dark btn btn-lg ps-3 pe-3 profileBtn" asp-area="" asp-controller="Profile" asp-action="Info" title="Manage">Профил</a>
     </li>
     <li class="nav-item ps-3 pe-4">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
