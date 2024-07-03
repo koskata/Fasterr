@@ -9,6 +9,10 @@
 }
 
 @{
+    decimal? discount = Model.Discount / 100;
+    decimal? discount2 = Model.Price * discount;
+    decimal? priceWithDiscount = Model.Price - discount2;
+
     double rating = 0.0;
     if (Model.Rating > 0)
     {
@@ -23,9 +27,17 @@
 
 <div class="ms-5 me-5 mt-5 text-center">
     <div class="row">
-        <div class="col-4" style="border: 1px solid black; border-radius: 0.5em;">
+        <div class="col-4 card" style="border: 1px solid black; border-radius: 0.5em;">
             <img class="card-img-top" style="width: 34.9rem;"
                  src="@Model.ImageURL" alt="Product Image">
+            @if (Model.Discount > 0)
+            {
+                <div class="card-img-overlay text-start">
+                    <span class="chip danger" style="font-size: 2.2em;">
+                        -@String.Format("{0:0}", @Model.Discount)%
+                    </span>
+                </div>
+            }
         </div>
         <div class="card pt-4 col-8 d-flex flex-column gap-3 border-0">
             <div class="d-flex flex-column align-items-center">
@@ -75,7 +87,17 @@
                 }
             </div>
             <p style="font-size:35px;"><u>@Model.Name</u></p>
-            <h4>@Model.Price лв.</h4>
+            @if (Model.Discount > 0)
+            {
+                <div class="d-flex text-center justify-content-center">
+                    <h4 class="card-text"><b><s>@Model.Price лв.</s></b></h4>
+                    <h4 style="color: red; padding-left: 0.5em;"><b>@String.Format("{0:0.00}", @priceWithDiscount) лв.</b></h4>
+                </div>
+            }
+            else
+            {
+                <p class="card-text"><b>@Model.Price лв.</b></p>
+            }
             <hr></hr>
             <p style="font-size: 20px;">@Model.Description</p>
             <p><b>@Model.Brand - @Model.Category</b></p>
