@@ -1,3 +1,42 @@
-﻿@{
+﻿@model ApplicationUser
+
+@{
     ViewData["Title"] = "Profile Info";
 }
+
+<div class="mt-3 text-center">
+    <h1>Profile Info</h1>
+    <hr></hr>
+</div>
+
+<div class="mt-4 d-flex flex-column align-items-center gap-3">
+    <img src="@Model.ImageURL" alt="Image Url" style="width: 15em; border-radius: 10em;"/>
+    <div class="">
+        <input asp-for="@Model.FirstName" class="form-control text-center" aria-required="true" style="width: 45em; font-size: 2em;" value="@($"{@Model.FirstName + " " + @Model.LastName}")" disabled />
+    </div>
+    <button type="button" id="openModalButton" class="btn btn-outline-info open-modal-button" data-userId="@Model.Id.ToString()">Comments Section</button>
+    @* -------------------------- *@
+    <span id="modalContainer"></span>
+    @* -------------------------- *@
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        function loadModalContent(userId) {
+            $.get('/User/ModalContent', { userId: userId }, function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+            });
+        }
+
+        $('.open-modal-button').click(function (evt) {
+            evt.stopImmediatePropagation();
+            var userId = $(this).data('userId');
+            loadModalContent(userId);
+        });
+    });
+</script>
