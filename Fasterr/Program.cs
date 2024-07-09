@@ -26,6 +26,7 @@ namespace Fasterr
             });
 
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
 
             var app = builder.Build();
 
