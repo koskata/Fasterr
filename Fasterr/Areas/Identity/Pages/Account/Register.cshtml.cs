@@ -62,6 +62,10 @@ namespace Fasterr.Areas.Identity.Pages.Account
             [Display(Name = "Last Name")]
             [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength)]
             public string LastName { get; set; }
+
+            [Required]
+            [Display(Name = "Image URL")]
+            public string ImageURL { get; set; }
         }
 
 
@@ -88,6 +92,7 @@ namespace Fasterr.Areas.Identity.Pages.Account
                 user.LastName = Input.LastName;
                 user.UserName = Input.Email;
                 user.Email = Input.Email;
+                user.ImageURL = Input.ImageURL;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
