@@ -26,6 +26,10 @@ namespace Fasterr.Data.Models
         [StringLength(LastNameMaxLength)]
         public string LastName { get; set; } = string.Empty;
 
+        [Required]
+        [Comment("User profile image")]
+        public string ImageURL { get; set; } = string.Empty;
+
         public virtual ICollection<ProductBuyerCart> Cart { get; set; }
 
         public virtual ICollection<ProductBuyerPurchased> PurchasedProducts { get; set; }
