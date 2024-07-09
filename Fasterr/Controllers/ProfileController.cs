@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Fasterr.Services.Interfaces;
+using Fasterr.Web.Infrastructure;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fasterr.Controllers
@@ -6,9 +9,20 @@ namespace Fasterr.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        public IActionResult Info()
+        private readonly IProfileService profileService;
+        
+
+        public ProfileController(IProfileService _profileService)
         {
-            return View();
+            profileService = _profileService;
+        }
+
+        public async Task<IActionResult> Info()
+        {
+            string userId = User.GetById();
+            var user = await profileService.GetUserByIdAsync(userId);
+
+            return View(user);
         }
     }
 }
