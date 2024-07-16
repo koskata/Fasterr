@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fasterr.Data.Migrations
 {
     [DbContext(typeof(FasterrDbContext))]
-    [Migration("20240611110341_updatedTables")]
-    partial class updatedTables
+    [Migration("20240716144211_createAndSeedDatabase")]
+    partial class createAndSeedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,11 @@ namespace Fasterr.Data.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)")
                         .HasComment("User first name");
+
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("User profile image");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -259,7 +264,7 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("35c9c992-f210-4939-8a1a-b1d0ddc46daf"),
                             BrandId = 1,
                             CategoryId = 1,
-                            Description = "Стилни футболни обувки за ежедневни тренировки и мачове",
+                            Description = "Стилни футболни обувки за ежедневни тренировки и мачове.",
                             Discount = 0,
                             ImageURL = "https://www.futbolemotion.com/imagesarticulos/199088/grandes/bota-nike-zoom-mercurial-superfly-9-elite-fg-turquesa-0.webp",
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Elite FG Hyper Turq",
@@ -272,8 +277,8 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("920c24b3-0d0e-473a-b79b-0c7961654ca0"),
                             BrandId = 1,
                             CategoryId = 1,
-                            Description = "Стилни футболни обувки за ежедневни тренировки и мачове",
-                            Discount = 0,
+                            Description = "Стилни футболни обувки за ежедневни тренировки и мачове.",
+                            Discount = 20,
                             ImageURL = "https://thirdcoastsoccer.net/cdn/shop/products/image__80827.1657841497.1280.1280.png?v=1681567637",
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Academy FG",
                             Price = 309.99m,
@@ -285,7 +290,7 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("3a84fcad-faa8-4ba7-bd2b-85dc1db18478"),
                             BrandId = 1,
                             CategoryId = 1,
-                            Description = "Професионални футболни обувки",
+                            Description = "Професионални футболни обувки.",
                             Discount = 0,
                             ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/f4eqgsde7r0w1-BG/image",
                             Name = "Професионални бутонки Nike Mercurial Dream Speed Superfly 8 Elite FG",
@@ -298,8 +303,8 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("9337cd2c-b65e-4851-82be-dfacdf135c8b"),
                             BrandId = 1,
                             CategoryId = 2,
-                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб PSG",
-                            Discount = 0,
+                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб PSG.",
+                            Discount = 25,
                             ImageURL = "https://frankfurt.apollo.olxcdn.com/v1/files/cpryl7ozvivj1-BG/image;s=1800x1846",
                             Name = "DRI-FIT футболен екип PSG MBAPPE",
                             Price = 199.99m,
@@ -311,8 +316,8 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("3d599ead-4054-4400-a434-6d2c2e40050a"),
                             BrandId = 4,
                             CategoryId = 2,
-                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб Manchester City",
-                            Discount = 0,
+                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб Manchester City.",
+                            Discount = 20,
                             ImageURL = "https://sportwearbg.com/image/Produkti/Futbol/Ekipi/English/Manchester%20City/23-24/home/detski-ekip-manchester-city.jpg",
                             Name = "Puma Manchester City футболен екип 2023/2024 домакински",
                             Price = 179.99m,
@@ -324,7 +329,7 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("f1162601-e372-4c94-914f-a8cbf150c2ee"),
                             BrandId = 1,
                             CategoryId = 2,
-                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб Liverpool",
+                            Description = "Оригинални тениска и шорти за всекидневни тренировки на футболен клуб Liverpool.",
                             Discount = 0,
                             ImageURL = "https://sportwearbg.com/image/Produkti/Futbol/Ekipi/English/Liverpool/23%2024/Home/detski_ekip_liverpool-2023-2024.jpg",
                             Name = "Nike Liverpool футболен екип 2023/2024 домакински",
@@ -337,8 +342,8 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("91de93c1-7470-465a-9d6f-c4e0ca348b0f"),
                             BrandId = 2,
                             CategoryId = 3,
-                            Description = "Долнище и горнище за тренировки 2023/2024 Аржентина",
-                            Discount = 0,
+                            Description = "Долнище и горнище за тренировки 2023/2024 Аржентина.",
+                            Discount = 30,
                             ImageURL = "https://img4.dhresource.com/webp/m/0x0/f3/albu/km/g/30/b88fd8a7-70e7-43cb-ab4d-5fd139e12cff.jpg",
                             Name = "Анцуг за тренировка Argentina 2023/2024",
                             Price = 165.99m,
@@ -350,7 +355,7 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("f33d52bd-a2fa-4d77-a2cf-bd126f003b5e"),
                             BrandId = 1,
                             CategoryId = 3,
-                            Description = "Долнище и горнище за тренировки 2023/2024 PSG",
+                            Description = "Долнище и горнище за тренировки 2023/2024 PSG.",
                             Discount = 0,
                             ImageURL = "https://m.media-amazon.com/images/I/619oiA9HqZL._AC_UY1100_.jpg",
                             Name = "Анцуг за тренировка PSG 2023/2024",
@@ -363,8 +368,8 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("f83fff9a-01f9-46a9-9190-3c2bcebb1247"),
                             BrandId = 3,
                             CategoryId = 4,
-                            Description = "Удобна и качествена тениска Under Armour",
-                            Discount = 0,
+                            Description = "Удобна и качествена тениска Under Armour.",
+                            Discount = 10,
                             ImageURL = "https://cdn.4camping.bg/files/photos/1600/a/ad473c5b-mazhka-teniska-under-armour-hg-armour-comp-ls-cheren-black-white.jpg",
                             Name = "Термо блуза Under Armour",
                             Price = 35.99m,
@@ -376,13 +381,78 @@ namespace Fasterr.Data.Migrations
                             Id = new Guid("efb16cae-f4f7-43b0-bdc5-5527c7960d11"),
                             BrandId = 6,
                             CategoryId = 4,
-                            Description = "Удобен термо клин на KIPSTA",
+                            Description = "Удобен термо клин на KIPSTA.",
                             Discount = 0,
                             ImageURL = "https://contents.mediadecathlon.com/p2480341/k$bba35f387da6b9cd9450cbcc0d46db4d/dolen-kas-klin-keepcomfort-cheren.jpg?format=auto&quality=40&f=800x800",
                             Name = "Долен къс клин KEEPCOMFORT KIPSTA",
                             Price = 25.99m,
                             Rating = 0,
                             TypeId = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("1e3bc703-82d0-486a-9e86-d33f1d600f7c"),
+                            BrandId = 4,
+                            CategoryId = 1,
+                            Description = "Висок клас футболни обувки PUMA за ежедневни тренировки и мачове.",
+                            Discount = 30,
+                            ImageURL = "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa/global/107599/03/sv01/fnd/ZAF/w/1000/h/1000/fmt/png",
+                            Name = "FUTURE 7 ULTIMATE FG/AG Football Boots",
+                            Price = 446.99m,
+                            Rating = 0,
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("0c9a8c04-d64a-44b7-80f6-cf09e86dfd5d"),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            Description = "Професионални футболни обувки NIKE с бутони подоходящи за вътре и навънка.",
+                            Discount = 0,
+                            ImageURL = "https://m.media-amazon.com/images/I/61O77oYe6KL._AC_UY900_.jpg",
+                            Name = "QILTON Women Football Shoes Professional Spikes Indoor/Outdoor",
+                            Price = 299.99m,
+                            Rating = 0,
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("4acb5c45-8d26-49b4-ac40-26ab959978e4"),
+                            BrandId = 1,
+                            CategoryId = 2,
+                            Description = "Женска тениска на Англия 2023 Домакин",
+                            Discount = 30,
+                            ImageURL = "https://www.pricerunner.com/product/640x640/3013004324/Nike-Women-s-England-2023-Stadium-Home-Football-Shirt.jpg?ph=true",
+                            Name = "NIKE Women's England 2023 Stadium Home Football Shirt",
+                            Price = 99.99m,
+                            Rating = 0,
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("7250d8c9-eead-49cc-b625-1f349f5db388"),
+                            BrandId = 1,
+                            CategoryId = 2,
+                            Description = "Женски екип Нидерландия Домакин",
+                            Discount = 50,
+                            ImageURL = "https://www.knvbshop.nl/media/catalog/product/cache/d81c8dc66c69ceb69419c2e7e72e896d/2/5/259628_nike-nederland-thuistenue-2024-2026-dames.jpg",
+                            Name = "Nike Dutch Team Home Kit 2024-2026 Women",
+                            Price = 79.99m,
+                            Rating = 0,
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("3622da3c-834e-4d0b-851f-2f471c4d4159"),
+                            BrandId = 3,
+                            CategoryId = 4,
+                            Description = "Женска термоблуза с дълъг ръкав Under Armour",
+                            Discount = 0,
+                            ImageURL = "https://ryos.co.nz/cdn/shop/products/1361524-001.jpg?v=1666151595",
+                            Name = "Under Armour HeatGear® Armour Long Sleeve Top Black",
+                            Price = 29.99m,
+                            Rating = 0,
+                            TypeId = 2
                         });
                 });
 
@@ -401,6 +471,21 @@ namespace Fasterr.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductsBuyersCart");
+                });
+
+            modelBuilder.Entity("Fasterr.Data.Models.ProductBuyerLike", b =>
+                {
+                    b.Property<Guid>("BuyerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("BuyerId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductsBuyersLike");
                 });
 
             modelBuilder.Entity("Fasterr.Data.Models.ProductBuyerPurchased", b =>
@@ -630,6 +715,25 @@ namespace Fasterr.Data.Migrations
                 {
                     b.HasOne("Fasterr.Data.Models.ApplicationUser", "Buyer")
                         .WithMany("Cart")
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Fasterr.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyer");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Fasterr.Data.Models.ProductBuyerLike", b =>
+                {
+                    b.HasOne("Fasterr.Data.Models.ApplicationUser", "Buyer")
+                        .WithMany()
                         .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
