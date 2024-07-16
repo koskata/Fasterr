@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<ProductAllViewModel>
 
+@{
+
+}
+
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -15,15 +19,43 @@
                 }
                 else
                 {
-                    <div class="p-2 mb-2 com">
-                        <h5>UserFullName</h5>
-                        <hr></hr>
-                        <p class="descrComment">Description</p>
-                    </div>
-                    @* @foreach (var product in Model)
+                    @foreach (var product in Model)
                     {
-                        <partial name="_ProductInCartPartialView" model="@product" />
-                    } *@
+                        decimal? discount = product.Discount / 100;
+                        decimal? discount2 = product.Price * discount;
+                        decimal? priceWithDiscount = product.Price - discount2;
+
+                        <a asp-area="" asp-controller="Product" asp-action="Info" asp-route-id="@product.Id" class="cardLink" style="text-decoration: none; color: inherit;">
+                            <div class="card" style="border: 1px solid black; border-radius: 0.4em; height: 10.5em; margin-bottom: 1em;">
+                                <div class="d-flex g-0 " style="background-color: #E8E8E8; height: 10.3em;  border-radius: 0.5em;">
+                                    <div class="">
+                                        <img src="@product.ImageURL" class="img-fluid rounded-start" style="height:10.3em; width: 20.3em; border-radius: 0.5em;">
+                                    </div>
+                                    @if (product.Discount > 0)
+                                    {
+                                        <div class="card-img-overlay text-start">
+                                            <span class="chip danger">
+                                                -@String.Format("{0:0}", @product.Discount)%
+                                            </span>
+                                        </div>
+                                    }
+                                    <div class="card-body">
+                                        <h5 class="card-title">@product.Name</h5>
+                                        @if (product.Discount > 0)
+                                        {
+                                            <span class="card-text"><b><s>@product.Price лв.</s></b></span>
+                                            <span style="color: red; padding-left: 0.5em;"><b>@String.Format("{0:0.00}", @priceWithDiscount) лв.</b></span>
+                                        }
+                                        else
+                                        {
+                                            <p class="card-text"><b>@product.Price лв.</b></p>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    }
                 }
             </div>
         </div>
