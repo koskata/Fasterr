@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 using Fasterr.Data.Models;
 using Fasterr.Web.ViewModels.Product;
+using Fasterr.Web.ViewModels.User;
 
 namespace Fasterr.Services.Interfaces
 {
     public interface IProfileService
     {
-        Task<ApplicationUser> GetUserByIdAsync(string userId);
+        Task<ApplicationUserViewModel> GetUserByIdAsync(string userId);
 
         Task<IEnumerable<ProductAllViewModel>> GetAllLikedProductsByUserAsync(string userId);
     }

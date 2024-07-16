@@ -8,6 +8,7 @@ using Fasterr.Data;
 using Fasterr.Data.Models;
 using Fasterr.Services.Interfaces;
 using Fasterr.Web.ViewModels.Product;
+using Fasterr.Web.ViewModels.User;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -46,9 +47,17 @@ namespace Fasterr.Services
             return likedProducts;
         }
 
-        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        public async Task<ApplicationUserViewModel> GetUserByIdAsync(string userId)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.Id.ToString() == userId);
+            var user = await context.Users
+                .Where(x => x.Id.ToString() == userId)
+                .Select(x => new ApplicationUserViewModel()
+                {
+                    Id = x.Id.ToString(),
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    ImageURL = x.ImageURL
+                }).FirstOrDefaultAsync();
 
             return user;
         }
