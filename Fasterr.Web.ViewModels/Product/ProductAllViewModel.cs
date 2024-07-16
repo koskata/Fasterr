@@ -30,8 +30,7 @@ namespace Fasterr.Web.ViewModels.Product
         public decimal? Discount { get; set; }
 
         [Required]
-        [Range(1, 5)]
-        public int Rating { get; set; }
+        public double Rating { get; set; }
 
         [Required]
         public string Brand { get; set; } = string.Empty;
@@ -43,6 +42,6 @@ namespace Fasterr.Web.ViewModels.Product
         public string Type { get; set; } = string.Empty;
 
         [Required]
-        public int RatingCount { get; set; }
+        public double RatingCount { get; set; }
     }
 }
