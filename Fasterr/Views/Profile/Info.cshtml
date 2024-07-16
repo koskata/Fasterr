@@ -1,27 +1,35 @@
-﻿@model ApplicationUser
+﻿@model ApplicationUserViewModel
 
 @{
     ViewData["Title"] = "Profile Info";
 }
 
+<style>
+    .likedProductsBtn {
+        background-color: indianred;
+        font-size: 2em;
+        border-radius: 0.45em;
+        margin-top: 1em;
+    }
+</style>
+
 <div class="mt-3 text-center">
     <h1>Profile Info</h1>
-    <hr></hr>
+    <hr />
 </div>
 
 <div class="mt-4 d-flex flex-column align-items-center gap-3">
-    <img src="@Model.ImageURL" alt="Image Url" style="width: 15em; border-radius: 10em;"/>
+    <img src="@Model.ImageURL" alt="Image Url" style="width: 15em; border-radius: 10em;" />
     <div class="">
         <input asp-for="@Model.FirstName" class="form-control text-center" aria-required="true" style="width: 45em; font-size: 2em;" value="@($"{@Model.FirstName + " " + @Model.LastName}")" disabled />
     </div>
-    <button type="button" id="openModalButton" class="btn btn-outline-info open-modal-button" data-userId="@Model.Id.ToString()">Comments Section</button>
-    @* -------------------------- *@
+    <button type="button" id="openModalButton" class="btn likedProductsBtn open-modal-button" data-userId="@Model.Id">Liked products</button>
+    @* ------------------ *@
     <span id="modalContainer"></span>
-    @* -------------------------- *@
+    @* ------------------ *@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
@@ -33,9 +41,8 @@
             });
         }
 
-        $('.open-modal-button').click(function (evt) {
-            evt.stopImmediatePropagation();
-            var userId = $(this).data('userId');
+        $('.open-modal-button').click(function () {
+            var userId = $(this).data('userid');
             loadModalContent(userId);
         });
     });
