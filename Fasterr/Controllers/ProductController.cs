@@ -50,6 +50,22 @@ namespace Fasterr.Controllers
             return View(query);
         }
 
+        public async Task<IActionResult> AllDiscount([FromQuery] AllProductsQueryModel query)
+        {
+            var queryResult = await productService.GetAllProductsAsync(
+                query.Category,
+                query.SearchTerm,
+                query.Sorting);
+
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+            query.Products = queryResult.Products.Where(x => x.Discount > 0.0m);
+
+            var productCategories = await productService.AllCategoriesNamesAsync();
+            query.Categories = productCategories;
+
+            return View(query);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Info(string id)
         {
