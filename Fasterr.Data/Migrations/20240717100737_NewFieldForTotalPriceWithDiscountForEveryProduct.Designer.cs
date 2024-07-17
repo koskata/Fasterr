@@ -4,6 +4,7 @@ using Fasterr.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fasterr.Data.Migrations
 {
     [DbContext(typeof(FasterrDbContext))]
-    partial class FasterrDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717100737_NewFieldForTotalPriceWithDiscountForEveryProduct")]
+    partial class NewFieldForTotalPriceWithDiscountForEveryProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,7 +288,7 @@ namespace Fasterr.Data.Migrations
                             Name = "Футболни обувки Nike Zoom Mercurial Superfly 9 Academy FG",
                             Price = 309.99m,
                             Rating = 0,
-                            TotalPrice = 247.992m,
+                            TotalPrice = 309.99m,
                             TypeId = 1
                         },
                         new
@@ -314,7 +316,7 @@ namespace Fasterr.Data.Migrations
                             Name = "DRI-FIT футболен екип PSG MBAPPE",
                             Price = 199.99m,
                             Rating = 0,
-                            TotalPrice = 149.9925m,
+                            TotalPrice = 199.99m,
                             TypeId = 1
                         },
                         new
@@ -328,7 +330,7 @@ namespace Fasterr.Data.Migrations
                             Name = "Puma Manchester City футболен екип 2023/2024 домакински",
                             Price = 179.99m,
                             Rating = 0,
-                            TotalPrice = 143.992m,
+                            TotalPrice = 179.99m,
                             TypeId = 1
                         },
                         new
@@ -356,7 +358,7 @@ namespace Fasterr.Data.Migrations
                             Name = "Анцуг за тренировка Argentina 2023/2024",
                             Price = 165.99m,
                             Rating = 0,
-                            TotalPrice = 116.193m,
+                            TotalPrice = 165.99m,
                             TypeId = 1
                         },
                         new
@@ -384,7 +386,7 @@ namespace Fasterr.Data.Migrations
                             Name = "Термо блуза Under Armour",
                             Price = 35.99m,
                             Rating = 0,
-                            TotalPrice = 32.391m,
+                            TotalPrice = 35.99m,
                             TypeId = 1
                         },
                         new
@@ -412,7 +414,7 @@ namespace Fasterr.Data.Migrations
                             Name = "FUTURE 7 ULTIMATE FG/AG Football Boots",
                             Price = 446.99m,
                             Rating = 0,
-                            TotalPrice = 312.893m,
+                            TotalPrice = 446.99m,
                             TypeId = 2
                         },
                         new
@@ -440,7 +442,7 @@ namespace Fasterr.Data.Migrations
                             Name = "NIKE Women's England 2023 Stadium Home Football Shirt",
                             Price = 99.99m,
                             Rating = 0,
-                            TotalPrice = 69.993m,
+                            TotalPrice = 99.99m,
                             TypeId = 2
                         },
                         new
@@ -454,7 +456,7 @@ namespace Fasterr.Data.Migrations
                             Name = "Nike Dutch Team Home Kit 2024-2026 Women",
                             Price = 79.99m,
                             Rating = 0,
-                            TotalPrice = 39.995m,
+                            TotalPrice = 79.99m,
                             TypeId = 2
                         },
                         new
