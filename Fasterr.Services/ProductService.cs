@@ -61,8 +61,8 @@ namespace Fasterr.Services
 
             productsQuery = sorting switch
             {
-                ProductSorting.HighestPrice => productsQuery.OrderByDescending(x => x.Price),
-                ProductSorting.LowestPrice => productsQuery.OrderBy(x => x.Price),
+                ProductSorting.HighestPrice => productsQuery.OrderByDescending(x => x.TotalPrice),
+                ProductSorting.LowestPrice => productsQuery.OrderBy(x => x.TotalPrice),
                 ProductSorting.LowestRating => productsQuery.OrderBy(x => x.Rating),
                 _ => productsQuery.OrderByDescending(x => x.Rating)
             };
