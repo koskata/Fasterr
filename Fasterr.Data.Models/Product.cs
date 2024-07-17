@@ -42,6 +42,10 @@ namespace Fasterr.Data.Models
         public int? Discount { get; set; }
 
         [Required]
+        [Comment("Product total price with discount")]
+        public decimal TotalPrice { get; set; }
+
+        [Required]
         [Comment("Product rating")]
         [Range(1, 5)]
         public int Rating { get; set; }
