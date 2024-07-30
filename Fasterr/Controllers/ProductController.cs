@@ -167,5 +167,11 @@ namespace Fasterr.Controllers
 
             return RedirectToAction(nameof(Cart));
         }
+
+        [Authorize]
+        public IActionResult Payment()
+        {
+            return View();
+        }
     }
 }
