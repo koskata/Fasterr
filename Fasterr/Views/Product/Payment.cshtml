@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Payment";
+}
+
+<style>
+    .paymentMethod {
+        opacity: 1;
+        transition: opacity 0.5s;
+    }
+
+    .paymentMethod:hover {
+        opacity: 0.65;
+    }
+
+    .paymentMethodImg {
+        border: 1px solid black;
+        box-shadow: 4px 5px 10px black;
+        width: 17em;
+    }
+</style>
+
+
+<div class="d-flex flex-column align-items-center">
+    <div class="mt-5">
+        <h1>Payment method</h1>
+    </div>
+    <div class="">
+        <hr></hr>
+        <div class="d-flex mt-5 gap-4">
+            <a class="paymentMethod btn">
+                <img class="paymentMethodImg p-2" src="https://cdn-icons-png.flaticon.com/512/667/667073.png" />
+            </a>
+
+            <a class="paymentMethod btn">
+                <img class="paymentMethodImg" src="https://static.vecteezy.com/system/resources/previews/012/184/580/original/cash-payment-outline-color-icon-vector.jpg" />
+            </a>
+        </div>
+    </div>
+</div>
