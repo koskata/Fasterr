@@ -29,7 +29,7 @@
 
     }
 
-    totalSum -= allDiscounts??0;
+    totalSum -= allDiscounts ?? 0;
 
     if (totalSum < 99 && totalSum > 0)
     {
@@ -45,6 +45,13 @@
     .vl {
         border-left: 5px solid #eee;
         height: 50vh;
+    }
+
+    .payBtn{
+        background-color: #DE6052;
+        min-width: 35vw;
+        border-radius: 0.1em;
+        font-size: 2em;
     }
 </style>
 
@@ -67,15 +74,21 @@
 
     <div class="vl"></div>
 
-    <div class="cartSection p-4 text-end" style="background-color:#eee; border: 1px solid black; min-width: 35vw; height: 50vh; border-radius: 0.4em;">
-        <p style="font-size: 1.6em;">Стойност на продуктите: <b>@String.Format("{0:0.00}", @totalSum)</b> лв.</p>
-        <hr></hr>
-        <p style="font-size: 1.2em;">Продукти Мъже: <b>@menSum</b> лв.</p>
-        <p style="font-size: 1.2em;">Продукти Жени: <b>@womenSum</b> лв.</p>
-        <p style="font-size: 1.2em;">Отстъпка: <b>@String.Format("{0:0.00}", @allDiscounts)</b> лв.</p>
-        <hr></hr>
+    <div class="d-flex flex-column gap-3">
+        <div class="cartSection p-4 text-end" style="background-color:#eee; border: 1px solid black; min-width: 35vw; height: 50vh; border-radius: 0.4em;">
+            <p style="font-size: 1.6em;">Стойност на продуктите: <b>@String.Format("{0:0.00}", @totalSum)</b> лв.</p>
+            <hr></hr>
+            <p style="font-size: 1.2em;">Продукти Мъже: <b>@menSum</b> лв.</p>
+            <p style="font-size: 1.2em;">Продукти Жени: <b>@womenSum</b> лв.</p>
+            <p style="font-size: 1.2em;">Отстъпка: <b>@String.Format("{0:0.00}", @allDiscounts)</b> лв.</p>
+            <hr></hr>
 
-        <p style="font-size: 1.2em;">Доставка: <b>@delivery</b> лв.</p>
+            <p style="font-size: 1.2em;">Доставка: <b>@delivery</b> лв.</p>
+        </div>
+
+        <div>
+            <a asp-area="" asp-controller="Product" asp-action="Payment" class="btn payBtn">Към плащане</a>
+        </div>
     </div>
 
 </div>
