@@ -93,30 +93,6 @@ namespace Fasterr.Services
             };
         }
 
-        public async Task<List<ProductAllViewModel>> GetAllProductsInCartAsync(string userId)
-        {
-            var products = await context.ProductsBuyersCart
-                .Where(x => x.BuyerId.ToString() == userId)
-                .Select(x => new ProductAllViewModel()
-                {
-                    Id = x.ProductId.ToString(),
-                    Name = x.Product.Name,
-                    Description = x.Product.Description,
-                    ImageURL = x.Product.ImageURL,
-                    Price = x.Product.Price,
-                    Discount = x.Product.Discount,
-                    Rating = x.Product.Rating,
-                    Brand = x.Product.Brand.Name,
-                    Category = x.Product.Category.Name,
-                    Type = x.Product.Type.Name,
-                    RatingCount = x.Product.ProductsBuyersRate.Count()
-                })
-                .ToListAsync();
-
-            return products;
-
-        }
-
         public async Task<ProductDetailsViewModel> GetProductByIdAsync(string id)
         {
             var model = await context.Products
@@ -196,18 +172,6 @@ namespace Fasterr.Services
             }
 
             return isAny;
-        }
-
-        public async Task RemoveProductFromCartAsync(string userId, string productId)
-        {
-            var model = new ProductBuyerCart()
-            {
-                BuyerId = Guid.Parse(userId),
-                ProductId = Guid.Parse(productId)
-            };
-
-            context.ProductsBuyersCart.Remove(model);
-            await context.SaveChangesAsync();
         }
     }
 }
