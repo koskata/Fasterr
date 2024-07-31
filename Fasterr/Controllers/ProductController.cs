@@ -135,43 +135,11 @@ namespace Fasterr.Controllers
             }
 
             var model = await productService.GetProductByIdAsync(id);
-
             var userId = User.GetById();
 
             await productService.AddToCartAsync(model, id, userId);
 
-            return RedirectToAction(nameof(Cart), "Product");
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Cart()
-        {
-            string userId = User.GetById();
-
-            var products = await productService.GetAllProductsInCartAsync(userId);
-
-            return View(products);
-        }
-
-        [Authorize]
-        public async Task<IActionResult> RemoveFromCart(string id)
-        {
-            if (!await productService.ProductExistsByIdAsync(id))
-            {
-                return BadRequest();
-            }
-
-            string userId = User.GetById();
-
-            await productService.RemoveProductFromCartAsync(userId, id);
-
-            return RedirectToAction(nameof(Cart));
-        }
-
-        [Authorize]
-        public IActionResult Payment()
-        {
-            return View();
+            return RedirectToAction("Cart", "Cart");
         }
     }
 }
