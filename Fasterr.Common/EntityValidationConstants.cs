@@ -37,5 +37,17 @@ namespace Fasterr.Common
             public const int NameMinLength = 2;
             public const int NameMaxLength = 30;
         }
+
+        public static class PayWithCard
+        {
+            public const int PhoneNumberMinLength = 9;
+            public const int PhoneNumberMaxLength = 12;
+
+            public const int AddressMinLength = 2;
+            public const int AddressMaxLength = 100;
+
+            public const int IBANMinLength = 5;
+            public const int IBANMaxLength = 34;
+        }
     }
 }
