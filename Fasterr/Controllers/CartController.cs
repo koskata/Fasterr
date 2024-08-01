@@ -1,6 +1,7 @@
 ﻿using Fasterr.Services;
 using Fasterr.Services.Interfaces;
 using Fasterr.Web.Infrastructure;
+using Fasterr.Web.ViewModels.Cart;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,29 @@ namespace Fasterr.Controllers
         public IActionResult Payment()
         {
             return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> PayWithCard()
+        {
+            string userId = User.GetById();
+
+            var products = await cartService.GetAllProductsInCartAsync(userId);
+
+            decimal? totalAmount = 0.0m;
+            foreach (var product in products)
+            {
+                decimal? discount = product.Discount / 100;
+                decimal? discount2 = product.Price * discount;
+                decimal? priceWithDiscount = product.Price - discount2;
+
+                totalAmount += priceWithDiscount;
+            }
+
+            PayWithCardViewModel model = new();
+            model.TotalAmount = totalAmount;
+
+            return View(model);
         }
     }
 }
