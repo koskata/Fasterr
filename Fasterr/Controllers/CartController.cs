@@ -74,5 +74,28 @@ namespace Fasterr.Controllers
 
             return View(model);
         }
+
+        [Authorize]
+        public async Task<IActionResult> PayWithCash()
+        {
+            string userId = User.GetById();
+
+            var products = await cartService.GetAllProductsInCartAsync(userId);
+
+            decimal? totalAmount = 0.0m;
+            foreach (var product in products)
+            {
+                decimal? discount = product.Discount / 100;
+                decimal? discount2 = product.Price * discount;
+                decimal? priceWithDiscount = product.Price - discount2;
+
+                totalAmount += priceWithDiscount;
+            }
+
+            PayWithCashViewModel model = new();
+            model.TotalAmount = totalAmount;
+
+            return View(model);
+        }
     }
 }
