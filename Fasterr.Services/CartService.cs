@@ -22,6 +22,18 @@ namespace Fasterr.Services
             context = _context;
         }
 
+        public async Task CleanAndMoveToPurchasedAllProductsFromUserCartAsync(string userId)
+        {
+            var products = await context.ProductsBuyersCart
+                .Where(x => x.BuyerId.ToString() == userId)
+                .ToListAsync();
+
+            await MoveProductsToPurchasedAsync(userId);
+
+            context.ProductsBuyersCart.RemoveRange(products);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<List<ProductAllViewModel>> GetAllProductsInCartAsync(string userId)
         {
             var products = await context.ProductsBuyersCart
@@ -44,6 +56,20 @@ namespace Fasterr.Services
 
             return products;
 
+        }
+
+        public async Task MoveProductsToPurchasedAsync(string userId)
+        {
+            var purchased = await context.ProductsBuyersCart
+                .Where(x => x.BuyerId.ToString() == userId)
+                .Select(x => new ProductBuyerPurchased()
+                {
+                    BuyerId = x.BuyerId,
+                    ProductId = x.ProductId,
+                }).ToListAsync();
+
+            await context.ProductsBuyersPurchased.AddRangeAsync(purchased);
+            await context.SaveChangesAsync();
         }
 
         public async Task RemoveProductFromCartAsync(string userId, string productId)
