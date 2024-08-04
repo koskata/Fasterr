@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Fasterr.Common.EntityValidationConstants.PayWithCard;
+using static Fasterr.Common.EntityValidationConstants.PayWithCardOrCash;
 using static Fasterr.Common.ErrorMessages;
 
 namespace Fasterr.Web.ViewModels.Cart
