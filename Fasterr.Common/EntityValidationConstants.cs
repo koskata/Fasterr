@@ -38,10 +38,10 @@ namespace Fasterr.Common
             public const int NameMaxLength = 30;
         }
 
-        public static class PayWithCard
+        public static class PayWithCardOrCash
         {
             public const int PhoneNumberMinLength = 9;
-            public const int PhoneNumberMaxLength = 12;
+            public const int PhoneNumberMaxLength = 13;
 
             public const int AddressMinLength = 2;
             public const int AddressMaxLength = 100;
