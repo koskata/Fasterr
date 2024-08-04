@@ -47,9 +47,16 @@ namespace Fasterr.Controllers
         }
 
         [Authorize]
-        public IActionResult Payment()
+        public IActionResult Payment(decimal totalSum)
         {
-            return View();
+            if (totalSum == 0.0m)
+            {
+                return RedirectToAction(nameof(Cart));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [Authorize]
@@ -96,6 +103,16 @@ namespace Fasterr.Controllers
             model.TotalAmount = totalAmount;
 
             return View(model);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> CleanCart()
+        {
+            string userId = User.GetById();
+
+            await cartService.CleanAndMoveToPurchasedAllProductsFromUserCartAsync(userId);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
