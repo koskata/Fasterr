@@ -25,8 +25,6 @@ namespace Fasterr.Services
 
         public async Task<IEnumerable<ProductAllViewModel>> GetAllLikedProductsByUserAsync(string userId)
         {
-            //var user = await context.Users.FirstOrDefaultAsync(x => x.Id.ToString() == userId);
-
             var likedProducts = await context.ProductsBuyersLike
                 .Where(x => x.BuyerId.ToString() == userId)
                 .Select(x => new ProductAllViewModel()
@@ -45,6 +43,28 @@ namespace Fasterr.Services
                 }).ToListAsync();
 
             return likedProducts;
+        }
+
+        public async Task<IEnumerable<ProductAllViewModel>> GetAllPurchasedProductsByUserAsync(string userId)
+        {
+            var purchasedProducts = await context.ProductsBuyersPurchased
+                .Where(x => x.BuyerId.ToString() == userId)
+                .Select(x => new ProductAllViewModel()
+                {
+                    Id = x.Product.Id.ToString(),
+                    Name = x.Product.Name,
+                    Description = x.Product.Description,
+                    ImageURL = x.Product.ImageURL,
+                    Price = x.Product.Price,
+                    Discount = x.Product.Discount,
+                    Rating = x.Product.Rating,
+                    Brand = x.Product.Brand.Name,
+                    Category = x.Product.Category.Name,
+                    Type = x.Product.Type.Name,
+                    RatingCount = x.Product.ProductsBuyersRate.Count()
+                }).ToListAsync();
+
+            return purchasedProducts;
         }
 
         public async Task<ApplicationUserViewModel> GetUserByIdAsync(string userId)

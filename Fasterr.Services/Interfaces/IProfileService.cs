@@ -15,5 +15,7 @@ namespace Fasterr.Services.Interfaces
         Task<ApplicationUserViewModel> GetUserByIdAsync(string userId);
 
         Task<IEnumerable<ProductAllViewModel>> GetAllLikedProductsByUserAsync(string userId);
+
+        Task<IEnumerable<ProductAllViewModel>> GetAllPurchasedProductsByUserAsync(string userId);
     }
 }
