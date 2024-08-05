@@ -11,6 +11,13 @@
         border-radius: 0.45em;
         margin-top: 1em;
     }
+
+    .purchasedProductsBtn {
+        background-color: peachpuff;
+        font-size: 2em;
+        border-radius: 0.45em;
+        margin-top: 1em;
+    }
 </style>
 
 <div class="mt-3 text-center">
@@ -23,7 +30,11 @@
     <div class="">
         <input asp-for="@Model.FirstName" class="form-control text-center" aria-required="true" style="width: 45em; font-size: 2em;" value="@($"{@Model.FirstName + " " + @Model.LastName}")" disabled />
     </div>
-    <button type="button" id="openModalButton" class="btn likedProductsBtn open-modal-button" data-userId="@Model.Id">Liked products</button>
+    <div class="d-flex gap-5">
+        <button type="button" id="openModalButton" class="btn likedProductsBtn open-modal-button" data-userId="@Model.Id">Харесани продукти</button>
+        <button type="button" id="openModalButton" class="btn purchasedProductsBtn open-modal-button2" data-userId="@Model.Id">Закупени продукти</button>
+    </div>
+    
     @* ------------------ *@
     <span id="modalContainer"></span>
     @* ------------------ *@
@@ -35,13 +46,27 @@
 <script>
     $(document).ready(function () {
         function loadModalContent(userId) {
-            $.get('/User/ModalContent', { userId: userId }, function (data) {
+            $.get('/User/LikedProducts', { userId: userId }, function (data) {
                 $('#modalContainer').html(data);
                 $('#myModal').modal('show');
             });
         }
 
         $('.open-modal-button').click(function () {
+            var userId = $(this).data('userid');
+            loadModalContent(userId);
+        });
+    });
+
+    $(document).ready(function () {
+        function loadModalContent(userId) {
+            $.get('/User/PurchasedProducts', { userId: userId }, function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+            });
+        }
+
+        $('.open-modal-button2').click(function () {
             var userId = $(this).data('userid');
             loadModalContent(userId);
         });
