@@ -13,7 +13,7 @@ namespace Fasterr.Controllers
             profileService = _profileService;
         }
 
-        public async Task<IActionResult> ModalContent(string userId)
+        public async Task<IActionResult> LikedProducts(string userId)
         {
             if (userId == null)
             {
@@ -23,7 +23,20 @@ namespace Fasterr.Controllers
 
             var likedProducts = await profileService.GetAllLikedProductsByUserAsync(userId);
 
-            return PartialView("~/Views/Shared/_ModalContent.cshtml", likedProducts);
+            return PartialView("~/Views/Shared/_LikedProductsPartialView.cshtml", likedProducts);
+        }
+
+        public async Task<IActionResult> PurchasedProducts(string userId)
+        {
+            if (userId == null)
+            {
+                return BadRequest();
+            }
+
+
+            var purchasedProducts = await profileService.GetAllPurchasedProductsByUserAsync(userId);
+
+            return PartialView("~/Views/Shared/_PurchasedProductsPartialView.cshtml", purchasedProducts);
         }
     }
 }
