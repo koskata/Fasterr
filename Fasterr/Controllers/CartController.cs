@@ -6,6 +6,8 @@ using Fasterr.Web.ViewModels.Cart;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using static Fasterr.Common.MessageConstants;
+
 namespace Fasterr.Controllers
 {
     [Authorize]
@@ -111,6 +113,8 @@ namespace Fasterr.Controllers
             string userId = User.GetById();
 
             await cartService.CleanAndMoveToPurchasedAllProductsFromUserCartAsync(userId);
+
+            TempData[UserMessageSuccess] = "Successfully made purchase!";
 
             return RedirectToAction("Index", "Home");
         }
